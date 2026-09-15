@@ -1,0 +1,5 @@
+# Automatically download and use compiled C++ components:
+ac_add_options --enable-artifact-builds
+
+# Never block a build on a required clobber again:
+mk_add_options AUTOCLOBBER=1

@@ -1,0 +1,516 @@
+Skipping test file installation (up to date). Run with --force to force reinstallation.
+Streaming resource usage profile to: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/.mozbuild/logs/test/profile_log_20260915_010024.json
+ 0:00.52 INFO These variables are available in the mozinfo environment and can be used to skip tests conditionally:
+ 0:00.52 INFO     a11y_checks: False
+ 0:00.52 INFO     android: False
+ 0:00.52 INFO     apple_catalina: False
+ 0:00.52 INFO     apple_silicon: False
+ 0:00.52 INFO     appname: firefox
+ 0:00.52 INFO     arch: x86_64
+ 0:00.52 INFO     artifact: True
+ 0:00.52 INFO     asan: False
+ 0:00.52 INFO     automation: False
+ 0:00.52 INFO     bin_suffix: 
+ 0:00.52 INFO     bits: 64
+ 0:00.52 INFO     buildapp: browser
+ 0:00.52 INFO     buildtype: opt
+ 0:00.52 INFO     buildtype_guess: opt
+ 0:00.52 INFO     cc_type: None
+ 0:00.52 INFO     ccov: False
+ 0:00.52 INFO     condprof: False
+ 0:00.52 INFO     coverage: False
+ 0:00.52 INFO     crashreporter: True
+ 0:00.52 INFO     datareporting: True
+ 0:00.52 INFO     dbus_enabled: False
+ 0:00.53 INFO     debug: False
+ 0:00.53 INFO     devedition: False
+ 0:00.53 INFO     display: None
+ 0:00.53 INFO     e10s: True
+ 0:00.53 INFO     early_beta_or_earlier: True
+ 0:00.53 INFO     enterprise: False
+ 0:00.53 INFO     fission: True
+ 0:00.53 INFO     has_sandbox: True
+ 0:00.53 INFO     headless: True
+ 0:00.53 INFO     healthreport: True
+ 0:00.53 INFO     http2: False
+ 0:00.53 INFO     http3: False
+ 0:00.53 INFO     inc_origin_init: False
+ 0:00.53 INFO     is_emulator: False
+ 0:00.53 INFO     is_ubuntu: False
+ 0:00.53 INFO     isolated_process: False
+ 0:00.53 INFO     macos_vm: False
+ 0:00.53 INFO     mda_gpu: False
+ 0:00.53 INFO     mingw: False
+ 0:00.53 INFO     mozconfig: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/mozconfig
+ 0:00.53 INFO     msix: False
+ 0:00.53 INFO     nightly_build: True
+ 0:00.53 INFO     nogpu: False
+ 0:00.53 INFO     normandy: True
+ 0:00.53 INFO     nova: True
+ 0:00.53 INFO     official: False
+ 0:00.53 INFO     opt: True
+ 0:00.53 INFO     os: mac
+ 0:00.53 INFO     os_version: 15.70
+ 0:00.53 INFO     pgo: False
+ 0:00.53 INFO     platform_guess: macosx64
+ 0:00.53 INFO     processor: x86_64
+ 0:00.53 INFO     release_or_beta: False
+ 0:00.53 INFO     require_signing: False
+ 0:00.53 INFO     sessionHistoryInParent: True
+ 0:00.53 INFO     socketprocess_e10s: False
+ 0:00.53 INFO     socketprocess_networking: False
+ 0:00.53 INFO     standalone: False
+ 0:00.53 INFO     stylo: True
+ 0:00.53 INFO     swgl: False
+ 0:00.53 INFO     sync: True
+ 0:00.53 INFO     telemetry: False
+ 0:00.53 INFO     tests_enabled: True
+ 0:00.53 INFO     toolkit: cocoa
+ 0:00.53 INFO     topobjdir: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0
+ 0:00.53 INFO     topsrcdir: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified
+ 0:00.53 INFO     tsan: False
+ 0:00.53 INFO     ubsan: False
+ 0:00.53 INFO     updater: True
+ 0:00.53 INFO     verify: False
+ 0:00.53 INFO     verify_fission: False
+ 0:00.53 INFO     version: OS X 15.7.9
+ 0:00.53 INFO     vertical_tab: False
+ 0:00.53 INFO     win10_2009: False
+ 0:00.53 INFO     win11_2009: False
+ 0:00.53 INFO     wmfme: 0
+ 0:00.53 INFO     xorigin: False
+ 0:00.53 INFO Checking for ssltunnel processes...
+ 0:00.61 INFO Checking for xpcshell processes...
+ 0:00.66 SUITE_START: mochitest-browser - running 3 tests
+ 0:00.66 INFO Running manifest: browser/base/content/test/contextMenu/browser.toml
+ 0:00.99 pid:25777 Full command: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/pk12util -i /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/build/pgo/certs/mochitest.client -w /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/.crtdbpw -d /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner
+pid:25777 pk12util: PKCS12 IMPORT SUCCESSFUL
+
+ 0:01.06 INFO MochitestServer : launching ['/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/xpcshell', '-g', '/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app/Contents/Resources', '-e', "const _PROFILE_PATH = '/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner'; const _SERVER_PORT = '8888'; const _SERVER_ADDR = '127.0.0.1'; const _TEST_PREFIX = undefined; const _DISPLAY_RESULTS = false; const _HTTPD_PATH = '/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/components'; ", '-f', '/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/_tests/testing/mochitest/server.js']
+ 0:01.06 INFO runtests.py | Server pid: 25779
+ 0:01.07 INFO runtests.py | Websocket server pid: 25780
+ 0:01.08 INFO runtests.py | SSL tunnel pid: 25781
+ 0:01.50 INFO use http3 server: False
+ 0:01.50 INFO Use build node at /Users/morpheous/.mozbuild/node/bin/node
+ 0:01.50 INFO mozserve | Found moz-http2 server path: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/_tests/testing/mochitest/xpcshell/moz-http2/moz-http2.js
+ 0:01.50 INFO Found node at /Users/morpheous/.mozbuild/node/bin/node
+ 0:01.68 INFO mozserve | moz-http2 server msg: HTTP2 server listening on ports 57904,57905
+
+ 0:01.68 INFO moz-http2 server started on ports 57904, 57905
+ 0:01.68 INFO node moz-http2 [stderr] (node:25784) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+
+ 0:01.68 INFO node moz-http2 [stderr] (Use `node --trace-deprecation ...` to show where the warning was created)
+
+ 0:01.69 INFO runtests.py | Running with scheme: http
+ 0:01.69 INFO runtests.py | Running with e10s: True
+ 0:01.69 INFO runtests.py | Running with fission: True
+ 0:01.69 INFO runtests.py | Running with cross-origin iframes: False
+ 0:01.69 INFO runtests.py | Running with socketprocess_e10s: False
+ 0:01.69 INFO runtests.py | Running http tests: start.
+
+ 0:01.75 WARNING Found 'firefox' running before starting test browser!
+ 0:01.75 WARNING {'ppid': 1, 'cmdline': ['/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app/Contents/MacOS/firefox', '-foreground'], 'pid': 54852, 'username': 'morpheous', 'name': 'firefox'}
+
+ 0:01.75 INFO Application command: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app/Contents/MacOS/firefox -marionette -remote-allow-system-access -foreground -profile /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner
+ 0:01.76 INFO runtests.py | Application pid: 25786
+ 0:01.76 Started process `GECKO(25786)`
+ 0:01.86 GECKO(25786) *** You are running in headless mode.
+ 0:02.59 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_socket_pid25796.log
+ 0:03.02 GECKO(25786) 1789448427247	Marionette	INFO	Marionette enabled
+ 0:03.23 GECKO(25786) 1789448427462	Marionette	TRACE	Received observer notification final-ui-startup
+ 0:03.23 GECKO(25786) 1789448427462	Marionette	DEBUG	Initializing Marionette
+ 0:03.44 GECKO(25786) 1789448427676	Marionette	INFO	Listening on port 2828
+ 0:03.45 GECKO(25786) 1789448427680	Marionette	DEBUG	Marionette is listening
+ 0:03.73 GECKO(25786) 1789448427967	Marionette	DEBUG	Accepted connection 0 from 127.0.0.1:57921
+ 0:03.75 GECKO(25786) [WARN  rkv::backend::impl_safe::environment] `load_ratio()` is irrelevant for this storage backend.
+ 0:03.75 GECKO(25786) 1789448427980	Marionette	DEBUG	Closed connection 0
+ 0:03.75 GECKO(25786) 1789448427981	Marionette	DEBUG	Accepted connection 1 from 127.0.0.1:57922
+ 0:03.95 GECKO(25786) 1789448428177	Marionette	DEBUG	1 -> [0,1,"WebDriver:NewSession",{"strictFileInteractability":true}]
+ 0:03.96 GECKO(25786) 1789448428193	Marionette	DEBUG	Waiting for initial application window
+ 0:04.25 GECKO(25786) [WARN  rkv::backend::impl_safe::environment] `load_ratio()` is irrelevant for this storage backend.
+ 0:04.32 GECKO(25786) [Parent 25786: Main Thread]: I/SlowChromeEvent Please do not use mouseenter/leave events in chrome. They are slower than mouseover/out! chrome://browser/content/tabbrowser/tabs.js:51:12
+ 0:04.61 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25808.log
+ 0:04.69 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_rdd_pid25809.log
+ 0:04.84 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25811.log
+ 0:05.15 GECKO(25786) [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+ 0:05.96 GECKO(25786) console.error: services.settings:
+ 0:05.96 GECKO(25786)   Message: EmptyDatabaseError: "main/nimbus-desktop-experiments" has not been synced yet
+ 0:05.96 GECKO(25786)   Stack:
+ 0:05.96 GECKO(25786)     EmptyDatabaseError@resource://services-settings/Database.sys.mjs:19:5
+ 0:05.96 GECKO(25786) list@resource://services-settings/Database.sys.mjs:96:13
+ 0:05.96 GECKO(25786) async*get@resource://services-settings/RemoteSettingsClient.sys.mjs:570:28
+ 0:05.96 GECKO(25786) async*getRecipesFromCollection/recipes<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:793:16
+ 0:05.96 GECKO(25786) #raceShutdown@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:749:34
+ 0:05.96 GECKO(25786) getRecipesFromCollection@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:792:41
+ 0:05.96 GECKO(25786) getRecipesFromAllCollections@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:648:39
+ 0:05.96 GECKO(25786) #updateImpl@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:518:33
+ 0:05.97 GECKO(25786) async*updateRecipes/<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:435:55
+ 0:05.97 GECKO(25786) LockGrantedCallback*withUpdateLock@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:371:26
+ 0:05.97 GECKO(25786) updateRecipes@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:435:18
+ 0:05.97 GECKO(25786) enable@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:323:16
+ 0:05.97 GECKO(25786) #init@resource://nimbus/ExperimentAPI.sys.mjs:325:28
+ 0:05.97 GECKO(25786) async*init@resource://nimbus/ExperimentAPI.sys.mjs:264:49
+ 0:05.97 GECKO(25786) finishInit@resource://normandy/Normandy.sys.mjs:108:30
+ 0:05.97 GECKO(25786) async*init@resource://normandy/Normandy.sys.mjs:79:16
+ 0:05.97 GECKO(25786) async*fn@resource://gre/modules/BrowserUtils.sys.mjs:83:33
+ 0:05.97 GECKO(25786) callSingleListener@resource://gre/modules/BrowserUtils.sys.mjs:768:15
+ 0:05.97 GECKO(25786) callModulesFromCategory@resource://gre/modules/BrowserUtils.sys.mjs:819:23
+ 0:05.97 GECKO(25786) BG__beforeUIStartup@resource:///modules/BrowserGlue.sys.mjs:421:23
+ 0:05.97 GECKO(25786) BG_observe@resource:///modules/BrowserGlue.sys.mjs:203:14
+ 0:06.33 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_utility_pid25818.log
+ 0:06.42 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25819.log
+ 0:06.43 GECKO(25786) 1789448430666	Marionette	TRACE	Received observer notification browser-idle-startup-tasks-finished
+ 0:06.76 GECKO(25786) 1789448430988	RemoteAgent	TRACE	[5] ProgressListener Start: expectNavigation=false resolveWhenStarted=false unloadTimeout=5000 waitForExplicitStart=false
+ 0:06.76 GECKO(25786) 1789448430988	RemoteAgent	TRACE	[5] ProgressListener Setting unload timer (5000ms)
+ 0:06.76 GECKO(25786) 1789448430989	RemoteAgent	TRACE	[5] Wait for initial navigation: isUncommittedInitial=false, isLoadingDocument=false
+ 0:06.76 GECKO(25786) 1789448430989	RemoteAgent	TRACE	[5] Document already finished loading: about:blank
+ 0:06.76 GECKO(25786) 1789448430989	RemoteAgent	TRACE	[5] ProgressListener Stop: has error=false url=about:blank
+ 0:06.78 GECKO(25786) 1789448431006	Marionette	DEBUG	1 <- [1,1,null,{"sessionId":"6dc31d90-3aa8-42ed-aa37-28168096bd8c","capabilities":{"acceptInsecureCerts":false,"browserName":"firefox","browserVersion":"158.0a1","platformName":"mac","setWindowRect":true,"unhandledPromptBehavior":"dismiss and notify","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:158.0) Gecko/20100101 Firefox/158.0","moz:buildID":"20260912093409","moz:headless":true,"moz:platformVersion":"24.6.0","moz:processID":25786,"moz:profile":"/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner","moz:shutdownTimeout":60000,"pageLoadStrategy":"normal","timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"strictFileInteractability":true,"moz:accessibilityChecks":false,"moz:webdriverClick":true,"moz:windowless":false,"proxy":{}}}]
+ 0:06.83 GECKO(25786) 1789448431063	Marionette	DEBUG	1 -> [0,2,"Addon:Install",{"temporary":false,"path":"/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmplfw6no96.zip"}]
+ 0:06.85 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25824.log
+ 0:06.95 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25825.log
+ 0:06.96 GECKO(25786) 1789448431191	Marionette	DEBUG	1 <- [1,2,null,{"value":"special-powers@mozilla.org"}]
+ 0:06.97 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25826.log
+ 0:07.04 GECKO(25786) 1789448431276	Marionette	DEBUG	1 -> [0,3,"Addon:Install",{"temporary":false,"path":"/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmppbzvn1ib.zip"}]
+ 0:07.08 GECKO(25786) 1789448431312	Marionette	DEBUG	1 <- [1,3,null,{"value":"mochikit@mozilla.org"}]
+ 0:07.08 GECKO(25786) 1789448431315	Marionette	DEBUG	1 -> [0,4,"Marionette:GetContext",{}]
+ 0:07.08 GECKO(25786) 1789448431315	Marionette	DEBUG	1 <- [1,4,null,{"value":"content"}]
+ 0:07.08 GECKO(25786) 1789448431316	Marionette	DEBUG	1 -> [0,5,"Marionette:SetContext",{"value":"chrome"}]
+ 0:07.08 GECKO(25786) 1789448431316	Marionette	DEBUG	1 <- [1,5,null,{"value":null}]
+ 0:07.09 GECKO(25786) 1789448431325	Marionette	DEBUG	1 -> [0,6,"WebDriver:ExecuteScript",{"script":"/* This Source Code Form is subject to the terms of the Mozilla Public\n * License, v. 2.0. If a copy of the MPL was not distr ... \n// the flavor and url to load.\nlet ev = new CustomEvent(\"mochitest-load\", { detail: [flavor, url] });\nwin.dispatchEvent(ev);","args":[{"flavor":"browser-chrome","testUrl":"about:blank"}],"newSandbox":true,"sandbox":"default","line":2371,"filename":"_tests/testing/mochitest/runtests.py"}]
+ 0:07.10 GECKO(25786) 1789448431333	RemoteAgent	TRACE	WebDriverProcessData actor created for PID 25786
+ 0:07.10 GECKO(25786) 1789448431335	Marionette	TRACE	[2] MarionetteCommands actor created for window id 4
+ 0:07.13 GECKO(25786) 1789448431358	Marionette	DEBUG	1 <- [1,6,null,{"value":null}]
+ 0:07.13 GECKO(25786) 1789448431362	Marionette	DEBUG	1 -> [0,7,"Marionette:SetContext",{"value":"content"}]
+ 0:07.13 GECKO(25786) 1789448431362	Marionette	DEBUG	1 <- [1,7,null,{"value":null}]
+ 0:07.17 GECKO(25786) 1789448431401	Marionette	DEBUG	1 -> [0,8,"WebDriver:DeleteSession",{}]
+ 0:07.17 GECKO(25786) 1789448431402	Marionette	TRACE	[2] MarionetteCommands actor destroyed for window id 4
+ 0:07.17 GECKO(25786) 1789448431403	Marionette	DEBUG	1 <- [1,8,null,{"value":null}]
+ 0:07.17 INFO runtests.py | Waiting for browser...
+ 0:07.18 GECKO(25786) 1789448431407	Marionette	DEBUG	Closed connection 1
+ 0:07.25 INFO *** Start BrowserChrome Test Results ***
+ 0:07.25 INFO checking for open sidebars
+ 0:07.26 INFO checking window state
+ 0:07.47 TEST_START: browser/base/content/test/contextMenu/browser_contextmenu.js
+ 0:07.49 INFO Entering setup bound 
+ 0:07.50 INFO Leaving setup bound 
+ 0:07.50 INFO Entering test test_xul_text_link_label
+ 0:07.52 GECKO(25786) Waiting for browser load
+ 0:07.52 GECKO(25786) Waiting for browser state change
+ 0:07.55 GECKO(25786) Saw state 110001 and status 0
+ 0:07.59 GECKO(25786) Saw state 20010 and status 0
+ 0:07.60 GECKO(25786) Saw state c0010 and status 0
+ 0:07.60 GECKO(25786) Browser got expected state change chrome://mochitests/content/browser/browser/base/content/test/contextMenu/subtst_contextmenu_xul.xhtml
+ 0:07.66 INFO Moved focus to #test-xul-text-link-label
+ 0:07.83 INFO Popup Shown
+ 0:07.83 INFO Menu "context-ask-chat" was built and is now visible
+ 0:07.88 INFO Leaving test test_xul_text_link_label
+ 0:07.88 INFO Entering test test_setup_html
+ 0:07.92 INFO Console message: [JavaScript Warning: "HTTPS-First Mode: Upgrading insecure speculative TCP connection “http://example.com/browser/browser/base/content/test/contextMenu/subtst_contextmenu.html” to use “https”."]
+ 0:07.93 INFO Console message: [JavaScript Warning: "HTTPS-First Mode: Upgrading insecure request “http://example.com/browser/browser/base/content/test/contextMenu/subtst_contextmenu.html” to use “https”."]
+ 0:08.04 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25837.log
+ 0:08.13 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25838.log
+ 0:08.25 GECKO(25786) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_tab_pid25840.log
+ 0:08.25 INFO Console message: [JavaScript Warning: "Specified “type” attribute of “video/durrrr;” is not supported. Load of media resource bogus.duh failed." {file: "https://example.com/browser/browser/base/content/test/contextMenu/subtst_contextmenu.html" line: 0}]
+ 0:08.26 INFO Console message: [JavaScript Warning: "All candidate resources failed to load. Media load paused." {file: "https://example.com/browser/browser/base/content/test/contextMenu/subtst_contextmenu.html" line: 0}]
+ 0:08.45 INFO Console message: [JavaScript Warning: "Partitioned cookie or storage access was provided to “https://example.com/browser/browser/base/content/test/contextMenu/file_pdfjs_test.pdf” because it is loaded in the third-party context and dynamic state partitioning is enabled."]
+ 0:08.46 INFO Console message: [JavaScript Warning: "HTTP load failed with status 404. Load of media resource https://example.com/browser/browser/base/content/test/contextMenu/bogus.duh failed." {file: "https://example.com/browser/browser/base/content/test/contextMenu/subtst_contextmenu.html" line: 0}]
+ 0:08.54 GECKO(25786) sysctlbyname for kern.hv_vmm_present failed with status -1### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpbczpwn9e.mozrunner/runtests_leaks_utility_pid25893.log
+ 0:08.54 GECKO(25786) JavaScript warning: resource://pdf.js/build/pdf.mjs, line 9183: WebGPU is disabled by blocklist.
+ 0:08.62 INFO Console message: [JavaScript Warning: "WebGPU is disabled by blocklist." {file: "resource://pdf.js/build/pdf.mjs" line: 9183}]
+ 0:09.47 INFO Leaving test test_setup_html
+ 0:09.47 INFO Entering test test_plaintext
+ 0:09.47 INFO Moved focus to #test-text
+ 0:09.55 INFO Popup Shown
+ 0:09.61 INFO Leaving test test_plaintext
+ 0:09.61 INFO Entering test test_link
+ 0:09.65 INFO Moved focus to #test-link
+ 0:09.67 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: LanguageDetector
+ 0:09.67 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: Translator
+ 0:09.67 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: ClipboardHelper
+ 0:09.67 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: GfxInfo
+ 0:09.72 INFO Popup Shown
+ 0:09.72 INFO Menu "context-ask-chat" was built and is now visible
+ 0:09.77 INFO Leaving test test_link
+ 0:09.77 INFO Entering test test_link_in_shadow_dom
+ 0:09.80 INFO Moved focus to #shadow-host
+ 0:09.87 INFO Popup Shown
+ 0:09.87 INFO Menu "context-ask-chat" was built and is now visible
+ 0:09.93 INFO Leaving test test_link_in_shadow_dom
+ 0:09.93 INFO Entering test test_linkpreviewcommand
+ 0:09.94 INFO Moved focus to #test-link
+ 0:10.03 INFO Popup Shown
+ 0:10.03 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.08 INFO Leaving test test_linkpreviewcommand
+ 0:10.08 INFO Entering test test_linkpreviewcommand_disabled
+ 0:10.10 INFO Moved focus to #test-link
+ 0:10.18 INFO Popup Shown
+ 0:10.18 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.21 INFO Leaving test test_linkpreviewcommand_disabled
+ 0:10.21 INFO Entering test test_linkpreviewcommand_not_on_text
+ 0:10.21 INFO Moved focus to #test-text
+ 0:10.28 INFO Popup Shown
+ 0:10.28 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.31 INFO Leaving test test_linkpreviewcommand_not_on_text
+ 0:10.31 INFO Entering test test_link_over_shadow_dom
+ 0:10.31 INFO Moved focus to #shadow-host-in-link
+ 0:10.37 INFO Popup Shown
+ 0:10.37 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.41 INFO Leaving test test_link_over_shadow_dom
+ 0:10.41 INFO Entering test test_mailto
+ 0:10.41 INFO Moved focus to #test-mailto
+ 0:10.47 INFO Popup Shown
+ 0:10.47 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.49 INFO Leaving test test_mailto
+ 0:10.49 INFO Entering test test_tel
+ 0:10.50 INFO Moved focus to #test-tel
+ 0:10.55 INFO Popup Shown
+ 0:10.55 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.57 INFO Leaving test test_tel
+ 0:10.57 INFO Entering test test_image
+ 0:10.58 INFO Moved focus to #test-image
+ 0:10.64 INFO Popup Shown
+ 0:10.64 INFO Completed onContextMenuShown
+ 0:10.64 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.66 INFO Moved focus to #test-svg-image
+ 0:10.72 INFO Popup Shown
+ 0:10.72 INFO Completed onContextMenuShown
+ 0:10.72 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.76 INFO Leaving test test_image
+ 0:10.76 INFO Entering test test_canvas
+ 0:10.76 INFO Moved focus to #test-canvas
+ 0:10.82 INFO Popup Shown
+ 0:10.82 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.86 INFO Leaving test test_canvas
+ 0:10.86 INFO Entering test test_video_ok
+ 0:10.86 INFO Moved focus to #test-video-ok
+ 0:10.92 INFO Popup Shown
+ 0:10.92 INFO Menu "context-ask-chat" was built and is now visible
+ 0:10.96 INFO Moved focus to #test-video-ok
+ 0:11.02 INFO Popup Shown
+ 0:11.02 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.05 INFO Leaving test test_video_ok
+ 0:11.05 INFO Entering test test_video_with_overlay
+ 0:11.05 INFO Moved focus to #test-video-overlay
+ 0:11.12 INFO Popup Shown
+ 0:11.12 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.16 INFO Leaving test test_video_with_overlay
+ 0:11.16 INFO Entering test test_audio_in_video
+ 0:11.16 INFO Moved focus to #test-audio-in-video
+ 0:11.22 INFO Popup Shown
+ 0:11.22 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.26 INFO Leaving test test_audio_in_video
+ 0:11.26 INFO Entering test test_video_bad
+ 0:11.26 INFO Moved focus to #test-video-bad
+ 0:11.33 INFO Popup Shown
+ 0:11.33 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.36 INFO Moved focus to #test-video-bad
+ 0:11.42 INFO Popup Shown
+ 0:11.42 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.46 INFO Leaving test test_video_bad
+ 0:11.46 INFO Entering test test_video_bad2
+ 0:11.47 INFO Moved focus to #test-video-bad2
+ 0:11.52 INFO Popup Shown
+ 0:11.52 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.56 INFO Moved focus to #test-video-bad2
+ 0:11.62 INFO Popup Shown
+ 0:11.62 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.66 INFO Leaving test test_video_bad2
+ 0:11.66 INFO Entering test test_iframe
+ 0:11.67 INFO Moved focus to #test-iframe
+ 0:11.75 INFO Popup Shown
+ 0:11.75 INFO Menu "context-ask-chat" was built and is now visible
+ 0:11.79 INFO Leaving test test_iframe
+ 0:11.79 INFO Entering test test_video_in_iframe
+ 0:11.80 INFO Moved focus to #test-video-in-iframe
+ 0:12.05 INFO Popup Shown
+ 0:12.05 INFO Menu "context-ask-chat" was built and is now visible
+ 0:12.10 INFO Moved focus to #test-video-in-iframe
+ 0:12.23 INFO Popup Shown
+ 0:12.23 INFO Menu "context-ask-chat" was built and is now visible
+ 0:12.27 INFO Leaving test test_video_in_iframe
+ 0:12.27 INFO Entering test test_audio_in_iframe
+ 0:12.28 INFO Moved focus to #test-audio-in-iframe
+ 0:12.38 INFO Popup Shown
+ 0:12.38 INFO Menu "context-ask-chat" was built and is now visible
+ 0:12.42 INFO Leaving test test_audio_in_iframe
+ 0:12.42 INFO Entering test test_image_in_iframe
+ 0:12.43 INFO Moved focus to #test-image-in-iframe
+ 0:12.51 INFO Popup Shown
+ 0:12.51 INFO Menu "context-ask-chat" was built and is now visible
+ 0:12.57 INFO Leaving test test_image_in_iframe
+ 0:12.58 INFO Entering test test_pdf_viewer_in_iframe
+ 0:12.58 INFO Moved focus to #test-pdf-viewer-in-frame
+ 0:12.65 INFO Popup Shown
+ 0:12.65 INFO Menu "context-ask-chat" was built and is now visible
+ 0:12.73 INFO Leaving test test_pdf_viewer_in_iframe
+ 0:12.73 INFO Entering test test_textarea
+ 0:12.73 INFO Leaving test test_textarea
+ 0:12.73 INFO Entering test test_textarea_spellcheck
+ 0:12.73 INFO Leaving test test_textarea_spellcheck
+ 0:12.73 INFO Entering test test_plaintext2
+ 0:12.73 INFO Moved focus to #test-text
+ 0:12.82 INFO Popup Shown
+ 0:12.86 INFO Leaving test test_plaintext2
+ 0:12.86 INFO Entering test test_undo_add_to_dictionary
+ 0:12.86 INFO Leaving test test_undo_add_to_dictionary
+ 0:12.86 INFO Entering test test_contenteditable
+ 0:12.86 INFO Leaving test test_contenteditable
+ 0:12.86 INFO Entering test test_copylinkcommand
+ 0:12.87 INFO Moved focus to #test-link
+ 0:12.96 INFO Popup Shown
+ 0:13.05 INFO Completed postCheckContextMenuFn
+ 0:13.06 INFO Leaving test test_copylinkcommand
+ 0:13.06 INFO Entering test test_dom_full_screen
+ 0:13.07 INFO Moved focus to #test-dom-full-screen
+ 0:13.17 INFO Completed preCheckContextMenuFn
+ 0:13.26 INFO Popup Shown
+ 0:13.26 INFO Menu "context-ask-chat" was built and is now visible
+ 0:13.32 INFO Completed postCheckContextMenuFn
+ 0:15.03 INFO Console message: [JavaScript Warning: "Layout was forced before the page was fully loaded. If stylesheets are not yet loaded this may cause a flash of unstyled content." {file: "resource://newtab/data/content/activity-stream.bundle.js" line: 32765}]
+ 0:15.45 INFO Leaving test test_dom_full_screen
+ 0:15.45 INFO Entering test test_pagemenu2
+ 0:15.45 INFO Moved focus to #test-text
+ 0:15.49 INFO Popup Shown
+ 0:15.49 INFO Menu "context-ask-chat" was built and is now visible
+ 0:15.52 INFO Leaving test test_pagemenu2
+ 0:15.52 INFO Entering test test_select_text
+ 0:15.52 INFO Moved focus to #test-select-text
+ 0:15.52 INFO Selecting text of #test-select-text
+ 0:15.52 INFO Completed preCheckContextMenuFn
+ 0:15.58 INFO Popup Shown
+ 0:15.58 INFO Menu "context-ask-chat" was built and is now visible
+ 0:15.61 INFO Leaving test test_select_text
+ 0:15.61 INFO Entering test test_select_text_search_service_not_initialized
+ 0:15.61 INFO Moved focus to #test-select-text
+ 0:15.61 INFO Selecting text of #test-select-text
+ 0:15.61 INFO Completed preCheckContextMenuFn
+ 0:15.67 INFO Popup Shown
+ 0:15.67 INFO Menu "context-ask-chat" was built and is now visible
+ 0:15.71 INFO Moved focus to #test-select-text
+ 0:15.71 INFO Selecting text of #test-select-text
+ 0:15.71 INFO Completed preCheckContextMenuFn
+ 0:15.76 INFO Popup Shown
+ 0:15.76 INFO Menu "context-ask-chat" was built and is now visible
+ 0:15.79 INFO Moved focus to #test-select-text
+ 0:15.79 INFO Selecting text of #test-select-text
+ 0:15.79 INFO Completed preCheckContextMenuFn
+ 0:15.85 INFO Popup Shown
+ 0:15.85 INFO Menu "context-ask-chat" was built and is now visible
+ 0:15.88 INFO Leaving test test_select_text_search_service_not_initialized
+ 0:15.88 INFO Entering test test_select_text_link
+ 0:15.88 INFO Moved focus to #test-select-text-link
+ 0:15.88 INFO Selecting text of #test-select-text-link
+ 0:15.88 INFO Completed preCheckContextMenuFn
+ 0:15.95 INFO Popup Shown
+ 0:15.95 INFO Menu "context-ask-chat" was built and is now visible
+ 0:15.97 INFO Completed postCheckContextMenuFn
+ 0:15.99 INFO Leaving test test_select_text_link
+ 0:15.99 INFO Entering test test_imagelink
+ 0:16.00 INFO Moved focus to #test-image-link
+ 0:16.07 GECKO(25786) doc is unexpectedly null (bug 1478596), composedTarget=[object HTMLDocument]
+ 0:16.07 GECKO(25786)  Alternative: target=[object HTMLDocument] and its doc=null
+ 0:16.07 GECKO(25786)  Alternative: originalTarget=[object HTMLDocument] and its doc=null
+ 0:16.07 GECKO(25786)  Alternative: explicitOriginalTarget=[object HTMLDocument] and its doc=null
+ 0:16.07 GECKO(25786) JavaScript error: resource:///actors/ContextMenuChild.sys.mjs, line 610: TypeError: doc is null
+ 0:16.00 INFO Console message: [JavaScript Error: "TypeError: doc is null" {file: "resource:///actors/ContextMenuChild.sys.mjs" line: 610}]
+ 0:34.50 GECKO(25786) console.error: services.settings:
+ 0:34.50 GECKO(25786)   Message: EmptyDatabaseError: "main/nimbus-desktop-experiments" has not been synced yet
+ 0:34.50 GECKO(25786)   Stack:
+ 0:34.50 GECKO(25786)     EmptyDatabaseError@resource://services-settings/Database.sys.mjs:19:5
+ 0:34.50 GECKO(25786) list@resource://services-settings/Database.sys.mjs:96:13
+ 0:34.50 GECKO(25786) async*get@resource://services-settings/RemoteSettingsClient.sys.mjs:570:28
+ 0:34.50 GECKO(25786) async*getRecipesFromCollection/recipes<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:793:16
+ 0:34.50 GECKO(25786) #raceShutdown@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:749:34
+ 0:34.50 GECKO(25786) getRecipesFromCollection@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:792:41
+ 0:34.50 GECKO(25786) getRecipesFromAllCollections@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:648:39
+ 0:34.50 GECKO(25786) #updateImpl@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:518:33
+ 0:34.50 GECKO(25786) async*updateRecipes/<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:435:55
+ 0:34.50 GECKO(25786) LockGrantedCallback*withUpdateLock@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:371:26
+ 0:34.50 GECKO(25786) updateRecipes@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:435:18
+ 0:34.50 GECKO(25786) setTimer/<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:1019:14
+ 0:34.50 GECKO(25786) notify/</<@resource://gre/modules/UpdateTimerManager.sys.mjs:271:36
+ 0:34.50 GECKO(25786) ChromeUtils::IdleDispatch handler*notify/<@resource://gre/modules/UpdateTimerManager.sys.mjs:268:25
+ 0:34.50 GECKO(25786) notify@resource://gre/modules/UpdateTimerManager.sys.mjs:310:9
+ 0:52.66 TEST_END: Test TIMEOUT, expected PASS. Subtests passed 3349/3354. Unexpected 1
+FAIL test_imagelink - Test timed outTIMEOUT browser/base/content/test/contextMenu/browser_contextmenu.js - Test timed out
+ 0:52.87 GECKO(25786) Completed ShutdownLeaks collections in process 25786
+ 0:52.87 INFO TEST-START | Shutdown
+ 0:52.87 INFO Browser Chrome Test Summary
+ 0:52.87 INFO Passed:  3349
+ 0:52.87 INFO Failed:  1
+ 0:52.87 INFO Todo:    4
+ 0:52.87 INFO Mode:    e10s
+ 0:52.87 INFO *** End BrowserChrome Test Results ***
+ 0:52.97 GECKO(25786) Exiting due to channel error.
+ 0:52.97 GECKO(25786) Exiting due to channel error.
+ 0:52.97 GECKO(25786) Exiting due to channel error.
+ 0:52.97 GECKO(25786) Exiting due to channel error.
+ 0:52.98 GECKO(25786) Exiting due to channel error.
+ 0:52.98 GECKO(25786) Exiting due to channel error.
+ 0:52.98 GECKO(25786) Exiting due to channel error.
+ 0:52.99 GECKO(25786) Exiting due to channel error.
+ 0:53.03 Main app process: exit 0
+ 0:53.03 INFO runtests.py | Application ran for: 0:00:51.288936
+ 0:53.04 INFO zombiecheck | Reading PID log: /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmp56bp7z7epidlog
+ 0:53.04 INFO ==> process 25786 launched child process 25796
+ 0:53.04 INFO ==> process 25786 launched child process 25808
+ 0:53.04 INFO ==> process 25786 launched child process 25809
+ 0:53.04 INFO ==> process 25786 launched child process 25811
+ 0:53.04 INFO ==> process 25786 launched child process 25818
+ 0:53.04 INFO ==> process 25786 launched child process 25819
+ 0:53.04 INFO ==> process 25786 launched child process 25824
+ 0:53.04 INFO ==> process 25786 launched child process 25825
+ 0:53.04 INFO ==> process 25786 launched child process 25826
+ 0:53.04 INFO ==> process 25786 launched child process 25837
+ 0:53.04 INFO ==> process 25786 launched child process 25838
+ 0:53.04 INFO ==> process 25786 launched child process 25840
+ 0:53.04 INFO ==> process 25786 launched child process 25893
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25824
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25825
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25826
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25796
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25893
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25837
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25838
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25808
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25809
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25840
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25811
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25818
+ 0:53.04 INFO zombiecheck | Checking for orphan process with PID: 25819
+ 0:53.05 INFO runtests.py | Running http tests: end. status: 0
+ 0:53.05 INFO Stopping web server
+ 0:53.11 INFO Server shut down.
+ 0:53.11 INFO Web server killed.
+ 0:53.11 INFO Stopping web socket server
+ 0:53.11 INFO Stopping ssltunnel
+ 0:53.12 WARNING leakcheck | refcount logging is off, so leaks can't be detected!
+ 0:53.25 INFO Buffered messages finished
+TEST-INFO | checking window state
+Browser Chrome Test Summary
+	Passed: 3349
+	Failed: 1
+	Todo: 4
+	Retried: 0
+	Mode: e10s
+*** End BrowserChrome Test Results ***
+ 0:53.26 INFO Buffered messages finished
+ 0:53.26 SUITE_END
+ 0:53.26 
+Overall Summary
+===============
+
+mochitest-browser
+~~~~~~~~~~~~~~~~~
+Ran 3355 checks (3354 subtests, 1 tests)
+Expected results: 3353
+Unexpected results: 2
+  test: 1 (1 timeout)
+  subtest: 1 (1 fail)
+
+Error Summary
+-------------
+browser/base/content/test/contextMenu/browser_contextmenu.js
+  FAIL test_imagelink - Test timed out
+  TIMEOUT browser/base/content/test/contextMenu/browser_contextmenu.js - Test timed out

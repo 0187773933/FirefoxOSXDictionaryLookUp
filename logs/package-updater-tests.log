@@ -1,0 +1,10 @@
+PASS: update 1 reapplies the complete patch and retains the GPU fix
+PASS: update 2 reapplies the complete patch and retains the GPU fix
+PASS: missing patch stops before resetting or building
+PASS: build failure stops without running helper fixes or reporting success
+PASS: upstream conflict leaves the existing source, patch, and build untouched
+PASS: fetch failure stops before resetting or building
+PASS: packaged build script applies the patch, configures artifact mode, and supports repeat builds
+PASS: packaged build script preserves an existing build configuration
+PASS: packaged build script stops on a conflicting source change
+All updater and build integration checks passed. No live source checkout was accessed.

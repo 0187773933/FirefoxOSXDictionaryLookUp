@@ -1,0 +1,32 @@
+Setting up artifact fix-stacks.tar.zst
+Downloading artifact to local cache: /Users/morpheous/.mozbuild/toolchains/b44671cbac0e7b4d-public%2Fbuild%2Ffix-stacks.tar.zst
+Downloading... 0.0 %
+Downloading... 100.0 %
+rm tree: /Users/morpheous/.mozbuild/fix-stacks
+untarring "/Users/morpheous/.mozbuild/fix-stacks.tar.zst"
+Setting up artifact minidump-stackwalk.tar.zst
+Downloading artifact to local cache: /Users/morpheous/.mozbuild/toolchains/b7406a2c1f692d00-public%2Fbuild%2Fminidump-stackwalk.tar.zst
+Downloading... 0.0 %
+Downloading... 100.0 %
+rm tree: /Users/morpheous/.mozbuild/minidump-stackwalk
+untarring "/Users/morpheous/.mozbuild/minidump-stackwalk.tar.zst"
+Setting up artifact samply.tar.zst
+Downloading artifact to local cache: /Users/morpheous/.mozbuild/toolchains/aa81fd62ed233d62-public%2Fbuild%2Fsamply.tar.zst
+Downloading... 0.0 %
+Downloading... 100.0 %
+untarring "/Users/morpheous/.mozbuild/samply.tar.zst"
+Setting up artifact profiler-node-tools.tar.zst
+Downloading artifact to local cache: /Users/morpheous/.mozbuild/toolchains/755e80059303de4a-public%2Fbuild%2Fprofiler-node-tools.tar.zst
+Downloading... 0.0 %
+Downloading... 100.0 %
+untarring "/Users/morpheous/.mozbuild/profiler-node-tools.tar.zst"
+Failed to run 'hg config'. hg configuration checks will be skipped.
+
+Paste the lines between the chevrons (>>> and <<<) into
+/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/mozconfig:
+
+>>>
+# Automatically download and use compiled C++ components:
+ac_add_options --enable-artifact-builds
+
+<<<

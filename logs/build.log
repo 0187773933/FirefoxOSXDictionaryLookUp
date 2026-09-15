@@ -1,0 +1,24 @@
+ 0:01.61 W Warnings in third-party code are being suppressed from the terminal output. Use --show-all-warnings or --verbose to see them.
+ 0:01.61 W All warnings will still be dumped to /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/.mozbuild/logs/build/warnings_*.json at the end of the build.
+ 0:02.05 Clobber not needed.
+ 0:02.52 /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/backend.FasterMake+RecursiveMakeBackend is out of date with respect to /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/browser/base/content/test/contextMenu/browser.toml
+ 0:02.52 Build configuration changed. Regenerating backend.
+ 0:02.52 /Users/morpheous/.mozbuild/srcdirs/mozilla-unified-59c4be99a57a/_virtualenvs/build/bin/python /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/config.status
+Reticulating splines...
+Finished reading 2559 moz.build files in 6.32s
+Read 0 gyp files in parallel contributing 0.00s to total wall time
+Processed into 16725 build config descriptors in 4.29s
+FasterMake+RecursiveMake backend executed in 2.82s
+  4322 total backend files; 0 created; 2 updated; 4320 unchanged; 0 deleted
+Total wall time: 15.64s; CPU time: 12.45s; Efficiency: 80%; Untracked: 2.21s
+ 0:20.16 Parallelism determined by memory: using 12 jobs for 12 cores based on 32.0 GiB RAM and estimated job size of 1.0 GiB
+ 0:20.17 /usr/bin/make -C faster -j12 -s
+ 0:20.97 Elapsed: 0.11s; From /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/gmp-clearkey/0.1: Kept 0 existing; Added/updated 1; Removed 0 files and 0 directories.
+ 0:25.98 Elapsed: 0.70s; From /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin: Kept 2072 existing; Added/updated 24; Removed 0 files and 0 directories.
+ 0:26.46 Elapsed: 1.16s; From /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/browser: Kept 4999 existing; Added/updated 27; Removed 0 files and 0 directories.
+ 0:39.23 W 0 compiler warnings present.
+ 0:39.28 W Overall system resources - Wall time: 37s; CPU: 55%; Read bytes: 954056704; Write bytes: 923262976; Read time: 37895; Write time: 97448
+ 0:39.28 W Swap in/out (MB): 719.421875/0.125
+ 0:39.28 To view a profile of the build, run |mach resource-usage|.
+ 0:39.28 Your build was successful!
+Streaming resource usage profile to: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/.mozbuild/logs/build/profile_log_20260915_010227.json

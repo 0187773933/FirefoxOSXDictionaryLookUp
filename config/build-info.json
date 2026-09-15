@@ -1,0 +1,20 @@
+{
+  "packaged_on": "2026-09-15",
+  "patch_base_revision": "1cf7c37cb9982c88f6d7683886ef2512b1e5a67f",
+  "checkout_revision_at_packaging": "1cf7c37cb9982c88f6d7683886ef2512b1e5a67f",
+  "source_directory": "/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified",
+  "application_path": "/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app",
+  "active_updater": "/usr/local/bin/firefoxNightlyUpdate",
+  "active_updater_patch": "/Users/morpheous/.local/share/firefox-nightly/patches/native-lookup.patch",
+  "files_modified_by_patch": [
+    "browser/actors/ContextMenuChild.sys.mjs",
+    "browser/base/content/browser-context.inc.xhtml",
+    "browser/base/content/browser-context.js",
+    "browser/base/content/nsContextMenu.sys.mjs",
+    "browser/base/content/test/contextMenu/browser.toml",
+    "browser/base/content/test/contextMenu/contextmenu_common.js",
+    "browser/locales/en-US/browser/browserContext.ftl",
+    "browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js"
+  ],
+  "patch_sha256": "cb57156fd6f67c8c96b12f228ac1456249f2901466443350c0130e63ce47d2b1"
+}

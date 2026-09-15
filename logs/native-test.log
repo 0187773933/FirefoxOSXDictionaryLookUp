@@ -1,0 +1,312 @@
+Streaming resource usage profile to: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/.mozbuild/logs/test/profile_log_20260915_010324.json
+ 0:06.10 INFO These variables are available in the mozinfo environment and can be used to skip tests conditionally:
+ 0:06.10 INFO     a11y_checks: False
+ 0:06.10 INFO     android: False
+ 0:06.10 INFO     apple_catalina: False
+ 0:06.10 INFO     apple_silicon: False
+ 0:06.10 INFO     appname: firefox
+ 0:06.10 INFO     arch: x86_64
+ 0:06.10 INFO     artifact: True
+ 0:06.10 INFO     asan: False
+ 0:06.10 INFO     automation: False
+ 0:06.10 INFO     bin_suffix: 
+ 0:06.10 INFO     bits: 64
+ 0:06.10 INFO     buildapp: browser
+ 0:06.10 INFO     buildtype: opt
+ 0:06.10 INFO     buildtype_guess: opt
+ 0:06.10 INFO     cc_type: None
+ 0:06.10 INFO     ccov: False
+ 0:06.10 INFO     condprof: False
+ 0:06.10 INFO     coverage: False
+ 0:06.10 INFO     crashreporter: True
+ 0:06.10 INFO     datareporting: True
+ 0:06.10 INFO     dbus_enabled: False
+ 0:06.10 INFO     debug: False
+ 0:06.10 INFO     devedition: False
+ 0:06.10 INFO     display: None
+ 0:06.10 INFO     e10s: True
+ 0:06.10 INFO     early_beta_or_earlier: True
+ 0:06.10 INFO     enterprise: False
+ 0:06.10 INFO     fission: True
+ 0:06.10 INFO     has_sandbox: True
+ 0:06.10 INFO     headless: False
+ 0:06.10 INFO     healthreport: True
+ 0:06.10 INFO     http2: False
+ 0:06.10 INFO     http3: False
+ 0:06.10 INFO     inc_origin_init: False
+ 0:06.10 INFO     is_emulator: False
+ 0:06.11 INFO     is_ubuntu: False
+ 0:06.11 INFO     isolated_process: False
+ 0:06.11 INFO     macos_vm: False
+ 0:06.11 INFO     mda_gpu: False
+ 0:06.11 INFO     mingw: False
+ 0:06.11 INFO     mozconfig: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/mozconfig
+ 0:06.11 INFO     msix: False
+ 0:06.11 INFO     nightly_build: True
+ 0:06.11 INFO     nogpu: False
+ 0:06.11 INFO     normandy: True
+ 0:06.11 INFO     nova: True
+ 0:06.11 INFO     official: False
+ 0:06.11 INFO     opt: True
+ 0:06.11 INFO     os: mac
+ 0:06.11 INFO     os_version: 15.70
+ 0:06.11 INFO     pgo: False
+ 0:06.11 INFO     platform_guess: macosx64
+ 0:06.11 INFO     processor: x86_64
+ 0:06.12 INFO     release_or_beta: False
+ 0:06.12 INFO     require_signing: False
+ 0:06.12 INFO     sessionHistoryInParent: True
+ 0:06.12 INFO     socketprocess_e10s: False
+ 0:06.12 INFO     socketprocess_networking: False
+ 0:06.12 INFO     standalone: False
+ 0:06.12 INFO     stylo: True
+ 0:06.12 INFO     swgl: False
+ 0:06.12 INFO     sync: True
+ 0:06.12 INFO     telemetry: False
+ 0:06.12 INFO     tests_enabled: True
+ 0:06.12 INFO     toolkit: cocoa
+ 0:06.12 INFO     topobjdir: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0
+ 0:06.12 INFO     topsrcdir: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified
+ 0:06.12 INFO     tsan: False
+ 0:06.12 INFO     ubsan: False
+ 0:06.12 INFO     updater: True
+ 0:06.12 INFO     verify: False
+ 0:06.12 INFO     verify_fission: False
+ 0:06.12 INFO     version: OS X 15.7.9
+ 0:06.12 INFO     vertical_tab: False
+ 0:06.12 INFO     win10_2009: False
+ 0:06.12 INFO     win11_2009: False
+ 0:06.12 INFO     wmfme: 0
+ 0:06.12 INFO     xorigin: False
+ 0:06.12 INFO Checking for ssltunnel processes...
+ 0:06.41 INFO Checking for xpcshell processes...
+ 0:06.48 INFO Warning: Unable to kill process xpcshell: process no longer exists (pid=33299, name='mdworker_shared')
+ 0:06.52 SUITE_START: mochitest-browser - running 1 tests
+ 0:06.53 INFO Running manifest: browser/base/content/test/contextMenu/browser.toml
+ 0:18.25 pid:34494 Full command: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/pk12util -i /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/build/pgo/certs/mochitest.client -w /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/.crtdbpw -d /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner
+pid:34494 pk12util: PKCS12 IMPORT SUCCESSFUL
+
+ 0:18.33 INFO MochitestServer : launching ['/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/xpcshell', '-g', '/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app/Contents/Resources', '-e', "const _PROFILE_PATH = '/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner'; const _SERVER_PORT = '8888'; const _SERVER_ADDR = '127.0.0.1'; const _TEST_PREFIX = undefined; const _DISPLAY_RESULTS = false; const _HTTPD_PATH = '/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/bin/components'; ", '-f', '/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/_tests/testing/mochitest/server.js']
+ 0:18.34 INFO runtests.py | Server pid: 34497
+ 0:18.35 INFO runtests.py | Websocket server pid: 34498
+ 0:18.36 INFO runtests.py | SSL tunnel pid: 34499
+ 0:18.85 INFO use http3 server: False
+ 0:18.85 INFO Use build node at /Users/morpheous/.mozbuild/node/bin/node
+ 0:18.85 INFO mozserve | Found moz-http2 server path: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/_tests/testing/mochitest/xpcshell/moz-http2/moz-http2.js
+ 0:18.85 INFO Found node at /Users/morpheous/.mozbuild/node/bin/node
+ 0:19.04 INFO mozserve | moz-http2 server msg: HTTP2 server listening on ports 58096,58097
+
+ 0:19.04 INFO moz-http2 server started on ports 58096, 58097
+ 0:19.04 INFO node moz-http2 [stderr] (node:34503) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+
+ 0:19.04 INFO node moz-http2 [stderr] (Use `node --trace-deprecation ...` to show where the warning was created)
+
+ 0:19.04 INFO runtests.py | Running with scheme: http
+ 0:19.04 INFO runtests.py | Running with e10s: True
+ 0:19.04 INFO runtests.py | Running with fission: True
+ 0:19.04 INFO runtests.py | Running with cross-origin iframes: False
+ 0:19.04 INFO runtests.py | Running with socketprocess_e10s: False
+ 0:19.04 INFO runtests.py | Running http tests: start.
+
+ 0:19.11 WARNING Found 'firefox' running before starting test browser!
+ 0:19.11 WARNING {'ppid': 1, 'cmdline': ['/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app/Contents/MacOS/firefox', '-foreground'], 'pid': 54852, 'name': 'firefox', 'username': 'morpheous'}
+
+ 0:19.11 INFO Application command: /Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified/obj-x86_64-apple-darwin24.6.0/dist/Nightly.app/Contents/MacOS/firefox -marionette -remote-allow-system-access -foreground -profile /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner
+ 0:19.12 INFO runtests.py | Application pid: 34505
+ 0:19.12 Started process `GECKO(34505)`
+ 0:20.04 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_socket_pid34519.log
+ 0:20.39 GECKO(34505) [Parent 34505, IPC I/O Parent] WARNING: Failed to launch gpu subprocess @posix_spawnp (Error:2): file /builds/worker/checkouts/gecko/ipc/glue/GeckoChildProcessHost.cpp:837
+ 0:20.39 GECKO(34505) [GFX1-]: GPU proc launch error posix_spawnp 0x2
+ 0:20.41 GECKO(34505) 1789448624564	Marionette	INFO	Marionette enabled
+ 0:21.07 GECKO(34505) [WARN  rkv::backend::impl_safe::environment] `load_ratio()` is irrelevant for this storage backend.
+ 0:21.36 GECKO(34505) [WARN  rkv::backend::impl_safe::environment] `load_ratio()` is irrelevant for this storage backend.
+ 0:21.50 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34527.log
+ 0:21.51 GECKO(34505) [Parent 34505, IPC I/O Parent] WARNING: Failed to launch gpu subprocess @posix_spawnp (Error:2): file /builds/worker/checkouts/gecko/ipc/glue/GeckoChildProcessHost.cpp:837
+ 0:21.51 GECKO(34505) [GFX1-]: GPU proc launch error posix_spawnp 0x2
+ 0:21.51 GECKO(34505) [Parent 34505, IPC I/O Parent] WARNING: Failed to launch gpu subprocess @posix_spawnp (Error:2): file /builds/worker/checkouts/gecko/ipc/glue/GeckoChildProcessHost.cpp:837
+ 0:21.51 GECKO(34505) [GFX1-]: GPU proc launch error posix_spawnp 0x2
+ 0:21.51 GECKO(34505) [GFX1-]: Fallback WR to SW-WR
+ 0:21.51 GECKO(34505) [GFX1-]: Failed to launch GPU process after 3 attempts
+ 0:21.55 GECKO(34505) 1789448625701	Marionette	TRACE	Received observer notification final-ui-startup
+ 0:21.55 GECKO(34505) 1789448625701	Marionette	DEBUG	Initializing Marionette
+ 0:21.62 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_rdd_pid34530.log
+ 0:21.71 GECKO(34505) 1789448625861	Marionette	INFO	Listening on port 2828
+ 0:21.71 GECKO(34505) 1789448625863	Marionette	DEBUG	Marionette is listening
+ 0:21.73 GECKO(34505) 1789448625887	Marionette	DEBUG	Accepted connection 0 from 127.0.0.1:58121
+ 0:21.74 GECKO(34505) 1789448625893	Marionette	DEBUG	Closed connection 0
+ 0:21.74 GECKO(34505) 1789448625894	Marionette	DEBUG	Accepted connection 1 from 127.0.0.1:58122
+ 0:21.89 GECKO(34505) 1789448626044	Marionette	DEBUG	1 -> [0,1,"WebDriver:NewSession",{"strictFileInteractability":true}]
+ 0:21.91 GECKO(34505) 1789448626058	Marionette	DEBUG	Waiting for initial application window
+ 0:22.02 GECKO(34505) [Parent 34505: Main Thread]: I/SlowChromeEvent Please do not use mouseenter/leave events in chrome. They are slower than mouseover/out! chrome://browser/content/tabbrowser/tabs.js:51:12
+ 0:22.31 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34534.log
+ 0:23.44 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34536.log
+ 0:23.75 GECKO(34505) console.error: services.settings:
+ 0:23.75 GECKO(34505)   Message: EmptyDatabaseError: "main/nimbus-desktop-experiments" has not been synced yet
+ 0:23.75 GECKO(34505)   Stack:
+ 0:23.75 GECKO(34505)     EmptyDatabaseError@resource://services-settings/Database.sys.mjs:19:5
+ 0:23.75 GECKO(34505) list@resource://services-settings/Database.sys.mjs:96:13
+ 0:23.75 GECKO(34505) async*get@resource://services-settings/RemoteSettingsClient.sys.mjs:570:28
+ 0:23.75 GECKO(34505) async*getRecipesFromCollection/recipes<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:793:16
+ 0:23.75 GECKO(34505) #raceShutdown@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:749:34
+ 0:23.75 GECKO(34505) getRecipesFromCollection@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:792:41
+ 0:23.75 GECKO(34505) getRecipesFromAllCollections@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:648:39
+ 0:23.75 GECKO(34505) #updateImpl@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:518:33
+ 0:23.75 GECKO(34505) async*updateRecipes/<@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:435:55
+ 0:23.75 GECKO(34505) LockGrantedCallback*withUpdateLock@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:371:26
+ 0:23.75 GECKO(34505) updateRecipes@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:435:18
+ 0:23.75 GECKO(34505) enable@resource://nimbus/lib/RemoteSettingsExperimentLoader.sys.mjs:323:16
+ 0:23.75 GECKO(34505) #init@resource://nimbus/ExperimentAPI.sys.mjs:325:28
+ 0:23.75 GECKO(34505) async*init@resource://nimbus/ExperimentAPI.sys.mjs:264:49
+ 0:23.75 GECKO(34505) finishInit@resource://normandy/Normandy.sys.mjs:108:30
+ 0:23.75 GECKO(34505) async*init@resource://normandy/Normandy.sys.mjs:79:16
+ 0:23.75 GECKO(34505) async*fn@resource://gre/modules/BrowserUtils.sys.mjs:83:33
+ 0:23.76 GECKO(34505) callSingleListener@resource://gre/modules/BrowserUtils.sys.mjs:768:15
+ 0:23.76 GECKO(34505) callModulesFromCategory@resource://gre/modules/BrowserUtils.sys.mjs:819:23
+ 0:23.76 GECKO(34505) BG__beforeUIStartup@resource:///modules/BrowserGlue.sys.mjs:421:23
+ 0:23.76 GECKO(34505) BG_observe@resource:///modules/BrowserGlue.sys.mjs:203:14
+ 0:24.06 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_utility_pid34539.log
+ 0:24.16 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34541.log
+ 0:24.17 GECKO(34505) 1789448628322	Marionette	TRACE	Received observer notification browser-idle-startup-tasks-finished
+ 0:24.49 GECKO(34505) 1789448628644	RemoteAgent	TRACE	[11] ProgressListener Start: expectNavigation=false resolveWhenStarted=false unloadTimeout=5000 waitForExplicitStart=false
+ 0:24.49 GECKO(34505) 1789448628644	RemoteAgent	TRACE	[11] ProgressListener Setting unload timer (5000ms)
+ 0:24.49 GECKO(34505) 1789448628645	RemoteAgent	TRACE	[11] Wait for initial navigation: isUncommittedInitial=false, isLoadingDocument=false
+ 0:24.49 GECKO(34505) 1789448628645	RemoteAgent	TRACE	[11] Document already finished loading: about:blank
+ 0:24.49 GECKO(34505) 1789448628645	RemoteAgent	TRACE	[11] ProgressListener Stop: has error=false url=about:blank
+ 0:24.51 GECKO(34505) 1789448628664	Marionette	DEBUG	1 <- [1,1,null,{"sessionId":"58ca3538-3d2a-4cb2-b075-cc35d3f93748","capabilities":{"acceptInsecureCerts":false,"browserName":"firefox","browserVersion":"158.0a1","platformName":"mac","setWindowRect":true,"unhandledPromptBehavior":"dismiss and notify","userAgent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:158.0) Gecko/20100101 Firefox/158.0","moz:buildID":"20260912093409","moz:headless":false,"moz:platformVersion":"24.6.0","moz:processID":34505,"moz:profile":"/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner","moz:shutdownTimeout":60000,"pageLoadStrategy":"normal","timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"strictFileInteractability":true,"moz:accessibilityChecks":false,"moz:webdriverClick":true,"moz:windowless":false,"proxy":{}}}]
+ 0:24.58 GECKO(34505) 1789448628736	Marionette	DEBUG	1 -> [0,2,"Addon:Install",{"temporary":false,"path":"/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpu6_91s1a.zip"}]
+ 0:24.68 GECKO(34505) 1789448628831	Marionette	DEBUG	1 <- [1,2,null,{"value":"special-powers@mozilla.org"}]
+ 0:24.75 GECKO(34505) 1789448628905	Marionette	DEBUG	1 -> [0,3,"Addon:Install",{"temporary":false,"path":"/var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpfuoxy4g8.zip"}]
+ 0:24.77 GECKO(34505) 1789448628927	Marionette	DEBUG	1 <- [1,3,null,{"value":"mochikit@mozilla.org"}]
+ 0:24.78 GECKO(34505) 1789448628929	Marionette	DEBUG	1 -> [0,4,"Marionette:GetContext",{}]
+ 0:24.78 GECKO(34505) 1789448628929	Marionette	DEBUG	1 <- [1,4,null,{"value":"content"}]
+ 0:24.78 GECKO(34505) 1789448628930	Marionette	DEBUG	1 -> [0,5,"Marionette:SetContext",{"value":"chrome"}]
+ 0:24.78 GECKO(34505) 1789448628931	Marionette	DEBUG	1 <- [1,5,null,{"value":null}]
+ 0:24.79 GECKO(34505) 1789448628940	Marionette	DEBUG	1 -> [0,6,"WebDriver:ExecuteScript",{"script":"/* This Source Code Form is subject to the terms of the Mozilla Public\n * License, v. 2.0. If a copy of the MPL was not distr ... \n// the flavor and url to load.\nlet ev = new CustomEvent(\"mochitest-load\", { detail: [flavor, url] });\nwin.dispatchEvent(ev);","args":[{"flavor":"browser-chrome","testUrl":"about:blank"}],"newSandbox":true,"sandbox":"default","line":2371,"filename":"_tests/testing/mochitest/runtests.py"}]
+ 0:24.79 GECKO(34505) 1789448628947	RemoteAgent	TRACE	WebDriverProcessData actor created for PID 34505
+ 0:24.80 GECKO(34505) 1789448628948	Marionette	TRACE	[9] MarionetteCommands actor created for window id 18
+ 0:24.83 GECKO(34505) 1789448628982	Marionette	DEBUG	1 <- [1,6,null,{"value":null}]
+ 0:24.83 GECKO(34505) 1789448628985	Marionette	DEBUG	1 -> [0,7,"Marionette:SetContext",{"value":"content"}]
+ 0:24.83 GECKO(34505) 1789448628985	Marionette	DEBUG	1 <- [1,7,null,{"value":null}]
+ 0:24.87 GECKO(34505) 1789448629026	Marionette	DEBUG	1 -> [0,8,"WebDriver:DeleteSession",{}]
+ 0:24.88 GECKO(34505) 1789448629027	Marionette	TRACE	[9] MarionetteCommands actor destroyed for window id 18
+ 0:24.88 GECKO(34505) 1789448629030	Marionette	DEBUG	1 <- [1,8,null,{"value":null}]
+ 0:24.88 INFO runtests.py | Waiting for browser...
+ 0:24.88 GECKO(34505) 1789448629034	Marionette	DEBUG	Closed connection 1
+ 0:25.23 INFO *** Start BrowserChrome Test Results ***
+ 0:25.23 INFO checking for open sidebars
+ 0:25.23 INFO checking window state
+ 0:25.43 TEST_START: browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
+ 0:25.43 INFO Entering test test_native_dictionary_context_menu
+ 0:25.55 INFO {"selector":"#word","zoom":1}
+ 0:25.66 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: LanguageDetector
+ 0:25.66 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: Translator
+ 0:25.66 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: ClipboardHelper
+ 0:25.66 INFO Global property added while loading chrome://browser/content/translations/selectTranslationsPanel.js: GfxInfo
+ 0:25.79 PASS test_native_dictionary_context_menu - Lookup is available for non-password selections
+ 0:25.79 PASS test_native_dictionary_context_menu - The menu names the selected text
+ 0:25.79 PASS test_native_dictionary_context_menu - Lookup is the first visible menu item
+ 0:25.81 PASS test_native_dictionary_context_menu - Clicking the menu invokes native lookup
+ 0:25.89 PASS test_native_dictionary_context_menu - The content process executed the native dictionary command
+ 0:25.89 INFO {"selector":"#word","zoom":1.5}
+ 0:26.00 PASS test_native_dictionary_context_menu - Lookup is available for non-password selections
+ 0:26.00 PASS test_native_dictionary_context_menu - The menu names the selected text
+ 0:26.00 PASS test_native_dictionary_context_menu - Lookup is the first visible menu item
+ 0:26.11 PASS test_native_dictionary_context_menu - Clicking the menu invokes native lookup
+ 0:26.20 PASS test_native_dictionary_context_menu - The content process executed the native dictionary command
+ 0:26.20 INFO {"selector":"#input","zoom":1}
+ 0:26.34 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34557.log
+ 0:26.41 PASS test_native_dictionary_context_menu - Lookup is available for non-password selections
+ 0:26.41 PASS test_native_dictionary_context_menu - The menu names the selected text
+ 0:26.41 PASS test_native_dictionary_context_menu - Lookup is the first visible menu item
+ 0:26.50 PASS test_native_dictionary_context_menu - Clicking the menu invokes native lookup
+ 0:26.50 GECKO(34505) 2026-09-15 01:03:50.655 firefox[34505:5067371] CoreText note: Client requested name ".SFNS-Regular", it will get TimesNewRomanPSMT rather than the intended font. All system UI font access should be through proper APIs such as CTFontCreateUIFontForLanguage() or +[NSFont systemFontOfSize:].
+ 0:26.50 GECKO(34505) 2026-09-15 01:03:50.655 firefox[34505:5067371] CoreText note: Set a breakpoint on CTFontLogSystemFontNameRequest to debug.
+ 0:26.55 PASS test_native_dictionary_context_menu - The content process executed the native dictionary command
+ 0:26.55 INFO {"selector":"#word","zoom":1,"frame":true}
+ 0:26.60 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34559.log
+ 0:26.76 GECKO(34505) ### XPCOM_MEM_BLOAT_LOG defined -- logging bloat/leaks to /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpn7rz7l2c.mozrunner/runtests_leaks_tab_pid34563.log
+ 0:26.78 PASS test_native_dictionary_context_menu - Lookup is available for non-password selections
+ 0:26.78 PASS test_native_dictionary_context_menu - The menu names the selected text
+ 0:26.78 PASS test_native_dictionary_context_menu - Lookup is the first visible menu item
+ 0:26.84 PASS test_native_dictionary_context_menu - Clicking the menu invokes native lookup
+ 0:26.88 PASS test_native_dictionary_context_menu - The content process executed the native dictionary command
+ 0:26.88 INFO {"selector":"#word","zoom":1,"collapsed":true}
+ 0:27.51 PASS test_native_dictionary_context_menu - Lookup is available for non-password selections
+ 0:27.55 INFO {"selector":"#password","zoom":1}
+ 0:27.62 GECKO(34505) JavaScript error: resource://gre/modules/LoginManagerChild.sys.mjs, line 3280: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIURI.host]
+ 0:27.65 INFO Console message: [JavaScript Error: "NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIURI.host]" {file: "resource://gre/modules/LoginManagerChild.sys.mjs" line: 3280}]
+ 0:27.65 PASS test_native_dictionary_context_menu - Lookup is available for non-password selections
+ 0:27.70 INFO Leaving test test_native_dictionary_context_menu
+ 0:27.72 INFO checking for open popups
+ 0:28.62 EXPECTED-FAIL browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js - changed preference: extensions.formautofill.addresses.storage.rust.migrationTestVersion
+ 0:28.62 GECKO(34505) MEMORY STAT vsizeMaxContiguous not supported in this build configuration.
+ 0:28.62 GECKO(34505) MEMORY STAT | vsize 44706MB | residentFast 403MB | heapAllocated 242MB
+ 0:28.62 INFO checking for open sidebars
+ 0:28.62 INFO checking window state
+ 0:28.62 TEST_END: Test PASS. Subtests passed 22/23. Unexpected 0
+ 0:28.65 GECKO(34505) Completed ShutdownLeaks collections in process 34505
+ 0:28.65 INFO TEST-START | Shutdown
+ 0:28.65 INFO Browser Chrome Test Summary
+ 0:28.65 INFO Passed:  22
+ 0:28.65 INFO Failed:  0
+ 0:28.65 INFO Todo:    1
+ 0:28.65 INFO Mode:    e10s
+ 0:28.65 INFO *** End BrowserChrome Test Results ***
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.73 GECKO(34505) Exiting due to channel error.
+ 0:28.77 Main app process: exit 0
+ 0:28.77 INFO runtests.py | Application ran for: 0:00:09.668818
+ 0:28.77 INFO zombiecheck | Reading PID log: /var/folders/pb/bj4zbt0n7m9fxly966pn5c_c0000gn/T/tmpza45ozu1pidlog
+ 0:28.78 INFO ==> process 34505 launched child process 34519
+ 0:28.78 INFO ==> process 34505 launched child process 34527
+ 0:28.78 INFO ==> process 34505 launched child process 34530
+ 0:28.78 INFO ==> process 34505 launched child process 34534
+ 0:28.78 INFO ==> process 34505 launched child process 34536
+ 0:28.78 INFO ==> process 34505 launched child process 34539
+ 0:28.78 INFO ==> process 34505 launched child process 34541
+ 0:28.78 INFO ==> process 34505 launched child process 34557
+ 0:28.78 INFO ==> process 34505 launched child process 34559
+ 0:28.78 INFO ==> process 34505 launched child process 34563
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34530
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34563
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34534
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34536
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34539
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34541
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34559
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34519
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34557
+ 0:28.78 INFO zombiecheck | Checking for orphan process with PID: 34527
+ 0:28.78 INFO runtests.py | Running http tests: end. status: 0
+ 0:28.79 INFO Stopping web server
+ 0:28.83 INFO Server shut down.
+ 0:28.83 INFO Web server killed.
+ 0:28.83 INFO Stopping web socket server
+ 0:28.83 INFO Stopping ssltunnel
+ 0:28.84 WARNING leakcheck | refcount logging is off, so leaks can't be detected!
+ 0:28.90 INFO Buffered messages finished
+TEST-INFO | checking window state
+Browser Chrome Test Summary
+	Passed: 22
+	Failed: 0
+	Todo: 1
+	Retried: 0
+	Mode: e10s
+*** End BrowserChrome Test Results ***
+ 0:28.90 INFO Buffered messages finished
+ 0:28.90 SUITE_END
+ 0:28.90 
+Overall Summary
+===============
+
+mochitest-browser
+~~~~~~~~~~~~~~~~~
+Ran 24 checks (23 subtests, 1 tests)
+Expected results: 24
+Unexpected results: 0
+OK

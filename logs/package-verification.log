@@ -1,0 +1,3 @@
+PASS: shell syntax for all three scripts.
+PASS: patch recreates all 8 source snapshots exactly from bundled baseline fixtures.
+PASS: installed updater and persistent patch snapshots match live files.

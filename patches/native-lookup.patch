@@ -1,0 +1,265 @@
+diff --git a/browser/actors/ContextMenuChild.sys.mjs b/browser/actors/ContextMenuChild.sys.mjs
+index bdb925257894a..70047ee05b67a 100644
+--- a/browser/actors/ContextMenuChild.sys.mjs
++++ b/browser/actors/ContextMenuChild.sys.mjs
+@@ -46,6 +46,26 @@ export class ContextMenuChild extends JSWindowActorChild {
+ 
+   receiveMessage(message) {
+     switch (message.name) {
++      case "ContextMenu:LookUpDictionary": {
++        const utils = this.contentWindow.windowUtils;
++        const { clientX, clientY } = message.data;
++        const topLevel = utils.toTopLevelWidgetRect(clientX, clientY, 1, 1);
++        const point =
++          Services.appinfo.processType == Ci.nsIXULRuntime.PROCESS_TYPE_CONTENT
++            ? utils.convertFromParentProcessWidgetToLocal(
++                topLevel.x,
++                topLevel.y,
++                1,
++                1
++              )
++            : topLevel;
++        const params = Cu.createCommandParams();
++        params.setLongValue("x", Math.round(point.x));
++        params.setLongValue("y", Math.round(point.y));
++        this.docShell.doCommandWithParams("cmd_lookUpDictionary", params);
++        return true;
++      }
++
+       case "ContextMenu:GetFrameTitle": {
+         let target = lazy.ContentDOMReference.resolve(
+           message.data.targetIdentifier
+diff --git a/browser/base/content/browser-context.inc.xhtml b/browser/base/content/browser-context.inc.xhtml
+index 621be24e4e0c1..5f3f9286e38bf 100644
+--- a/browser/base/content/browser-context.inc.xhtml
++++ b/browser/base/content/browser-context.inc.xhtml
+@@ -5,6 +5,8 @@
+ <script src="chrome://browser/content/browser-context.js" hidden="true" />
+ 
+ #ifdef XP_MACOSX
++      <menuitem id="context-look-up-dictionary" hidden="true"/>
++      <menuseparator id="context-sep-look-up-dictionary" hidden="true"/>
+       <menuitem id="context-back"
+                 data-l10n-id="main-context-menu-back-mac"
+                 command="Browser:BackOrBackDuplicate"/>
+diff --git a/browser/base/content/browser-context.js b/browser/base/content/browser-context.js
+index 042341cecb1a4..9c81d5ad7f13a 100644
+--- a/browser/base/content/browser-context.js
++++ b/browser/base/content/browser-context.js
+@@ -13,6 +13,9 @@ document.addEventListener(
+     // eslint-disable-next-line complexity
+     contextMenuPopup.addEventListener("command", event => {
+       switch (event.target.id) {
++        case "context-look-up-dictionary":
++          gContextMenu.lookUpDictionary().catch(console.error);
++          break;
+         case "context-viewsource-goToLine":
+           gViewSourceUtils
+             .getPageActor(gContextMenu.browser)
+diff --git a/browser/base/content/nsContextMenu.sys.mjs b/browser/base/content/nsContextMenu.sys.mjs
+index 4f48face7c2ce..f642206783cc3 100644
+--- a/browser/base/content/nsContextMenu.sys.mjs
++++ b/browser/base/content/nsContextMenu.sys.mjs
+@@ -382,6 +382,7 @@ export class nsContextMenu {
+   }
+ 
+   initItems(aXulMenu) {
++    this.initDictionaryItem();
+     this.initOpenItems();
+     this.initNavigationItems();
+     this.initViewItems();
+@@ -411,6 +412,31 @@ export class nsContextMenu {
+     }
+   }
+ 
++  initDictionaryItem() {
++    if (AppConstants.platform != "macosx") {
++      return;
++    }
++    const show = this.isTextSelected && !this.onPassword;
++    this.showItem("context-look-up-dictionary", show);
++    this.showItem("context-sep-look-up-dictionary", show);
++    if (show) {
++      const text = this.selectedText.replace(/\s+/g, " ").trim();
++      this.document.l10n.setAttributes(
++        this.document.getElementById("context-look-up-dictionary"),
++        "main-context-menu-look-up-dictionary",
++        { text: text.length > 30 ? text.slice(0, 30) + "…" : text }
++      );
++    }
++  }
++
++  lookUpDictionary() {
++    const { clientX, clientY } = this.contentData.context;
++    return this.actor.sendQuery("ContextMenu:LookUpDictionary", {
++      clientX,
++      clientY,
++    });
++  }
++
+   initTextFragmentItems() {
+     const shouldShow =
+       lazy.TEXT_FRAGMENTS_ENABLED &&
+diff --git a/browser/base/content/test/contextMenu/browser.toml b/browser/base/content/test/contextMenu/browser.toml
+index d969097dfab5a..49140b51f8ea9 100644
+--- a/browser/base/content/test/contextMenu/browser.toml
++++ b/browser/base/content/test/contextMenu/browser.toml
+@@ -91,6 +91,9 @@ skip-if = [
+   "os == 'linux' && os_version == '24.04' && arch == 'x86_64' && display == 'x11' && socketprocess_networking",
+ ]
+ 
++["browser_contextmenu_lookup_dictionary.js"]
++run-if = ["os == 'mac'"]
++
+ ["browser_contextmenu_plaintextlinks.js"]
+ skip-if = [
+   "a11y_checks", # Bugs 1858041 and 1835079 for causing intermittent crashes
+diff --git a/browser/base/content/test/contextMenu/contextmenu_common.js b/browser/base/content/test/contextMenu/contextmenu_common.js
+index 165f0750f6f40..6f8c2a8f541d4 100644
+--- a/browser/base/content/test/contextMenu/contextmenu_common.js
++++ b/browser/base/content/test/contextMenu/contextmenu_common.js
+@@ -75,6 +75,7 @@ function getVisibleMenuItems(aMenu) {
+         // Inspect accessibility properties does not have an access key. See
+         // bug 1630717 for more details.
+         item.id != "context-inspect-a11y" &&
++        item.id != "context-look-up-dictionary" &&
+         !item.id.includes("context-media-playbackrate") &&
+         item.id != "context-copy-link-to-highlight" &&
+         item.id != "context-copy-clean-link-to-highlight"
+@@ -432,6 +433,19 @@ async function test_contextmenu(selector, menuItems, options = {}) {
+   }
+ 
+   if (menuItems) {
++    if (
++      AppConstants.platform == "macosx" &&
++      gContextMenu.isTextSelected &&
++      !gContextMenu.onPassword
++    ) {
++      menuItems = [
++        "context-look-up-dictionary",
++        true,
++        "---",
++        null,
++        ...menuItems,
++      ];
++    }
+     if (Services.prefs.getBoolPref("devtools.inspector.enabled", true)) {
+       let inspectItems = [];
+       let hasSeparatorAboveAskChat = false;
+diff --git a/browser/locales/en-US/browser/browserContext.ftl b/browser/locales/en-US/browser/browserContext.ftl
+index 85b875194acf5..060407eb23781 100644
+--- a/browser/locales/en-US/browser/browserContext.ftl
++++ b/browser/locales/en-US/browser/browserContext.ftl
+@@ -8,6 +8,11 @@ navbar-tooltip-instruction =
+        *[other] Right-click or pull down to show history
+     }
+ 
++# Variables:
++#   $text (String) - The selected text, truncated for the menu label.
++main-context-menu-look-up-dictionary =
++    .label = Look Up “{ $text }”
++
+ ## Back
+ 
+ # Variables
+diff --git a/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js b/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
+new file mode 100644
+index 0000000000000..5f1f45fe5fae6
+--- /dev/null
++++ b/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
+@@ -0,0 +1,95 @@
++/* Any copyright is dedicated to the Public Domain.
++ * https://creativecommons.org/publicdomain/zero/1.0/ */
++
++"use strict";
++
++add_task(async function test_native_dictionary_context_menu() {
++  const page = `data:text/html,${encodeURIComponent(`<!DOCTYPE html>
++    <style>body { padding: 40px; } span, input { font-size: 24px; }</style>
++    <span id="word">dictionary</span>
++    <input id="input" value="dictionary">
++    <input id="password" type="password" value="dictionary">
++    <iframe srcdoc='<span id="word" style="font-size:24px">dictionary</span>'></iframe>
++  `)}`;
++
++  await BrowserTestUtils.withNewTab(page, async browser => {
++    const menu = document.getElementById("contentAreaContextMenu");
++    const item = document.getElementById("context-look-up-dictionary");
++
++    for (const scenario of [
++      { selector: "#word", zoom: 1 },
++      { selector: "#word", zoom: 1.5 },
++      { selector: "#input", zoom: 1 },
++      { selector: "#word", zoom: 1, frame: true },
++      { selector: "#word", zoom: 1, collapsed: true },
++      { selector: "#password", zoom: 1 },
++    ]) {
++      info(JSON.stringify(scenario));
++      browser.fullZoom = scenario.zoom;
++      const context = scenario.frame
++        ? browser.browsingContext.children[0]
++        : browser.browsingContext;
++      await SpecialPowers.spawn(context, [scenario], options => {
++        const element = content.document.querySelector(options.selector);
++        if (content.HTMLInputElement.isInstance(element)) {
++          element.focus();
++          element.select();
++        } else {
++          content.document.activeElement.blur();
++          const selection = content.getSelection();
++          selection.removeAllRanges();
++          if (!options.collapsed) {
++            const range = content.document.createRange();
++            range.selectNodeContents(element);
++            selection.addRange(range);
++          }
++        }
++      });
++
++      const shown = BrowserTestUtils.waitForPopupEvent(menu, "shown");
++      await BrowserTestUtils.synthesizeMouse(
++        scenario.selector,
++        12,
++        12,
++        { type: "contextmenu", button: 2 },
++        context
++      );
++      await shown;
++
++      const visible = !scenario.collapsed && scenario.selector != "#password";
++      is(
++        !item.hidden,
++        visible,
++        "Lookup is available for non-password selections"
++      );
++      const hidden = BrowserTestUtils.waitForPopupEvent(menu, "hidden");
++      if (visible) {
++        await document.l10n.translateElements([item]);
++        is(
++          item.label,
++          "Look Up “dictionary”",
++          "The menu names the selected text"
++        );
++        const firstItem = Array.from(menu.children).find(
++          child => !child.hidden
++        );
++        is(firstItem, item, "Lookup is the first visible menu item");
++        const original = gContextMenu.lookUpDictionary.bind(gContextMenu);
++        const invocation = new Promise((resolve, reject) => {
++          gContextMenu.lookUpDictionary = () => {
++            ok(true, "Clicking the menu invokes native lookup");
++            const result = original();
++            result.then(resolve, reject);
++            return result;
++          };
++        });
++        menu.activateItem(item);
++        await invocation;
++        ok(true, "The content process executed the native dictionary command");
++      } else {
++        menu.hidePopup();
++      }
++      await hidden;
++    }
++  });
++});
