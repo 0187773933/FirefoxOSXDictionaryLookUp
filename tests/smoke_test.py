@@ -59,7 +59,22 @@ return (async () => {
   return errors;
 })();
 """
-HIDE_MENU = 'document.getElementById("contentAreaContextMenu").hidePopup();'
+# Sends the same query the menu item sends and returns what came back, so a
+# failure that the module catches and logs still fails the test.
+REACHES_PAGE = """
+return (async () => {
+  const context = gContextMenu.contentData.context;
+  try {
+    return await gContextMenu.actor.manager
+      .getActor("DictionaryLookup")
+      .sendQuery("DictionaryLookup:LookUp",
+                 {clientX: context.clientX, clientY: context.clientY});
+  } catch (e) {
+    return String(e);
+  }
+})();
+"""
+HIDE_MENU ='document.getElementById("contentAreaContextMenu").hidePopup();'
 
 
 class Marionette:
@@ -165,6 +180,9 @@ def main():
             expect("label", state["label"] == "Look Up “serendipity”", repr(state["label"]))
             expect("position", state["firstVisible"] == "context-look-up-dictionary",
                    f"first visible item is {state['firstVisible']}")
+            reached = m.chrome(REACHES_PAGE)
+            expect("lookup reaches page", reached is True,
+                   "page ran the lookup" if reached is True else repr(reached))
             errors = m.chrome(CLICK_ITEM)
             expect("click", not errors, "no errors" if not errors else "; ".join(errors))
             m.chrome(HIDE_MENU)

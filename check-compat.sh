@@ -24,6 +24,7 @@ checks=(
   "browser/actors/ContextMenuChild.sys.mjs|context.clientX"
   "browser/base/content/browser-init.js|browser-delayed-startup-finished"
   "extensions/pref/autoconfig/src/nsReadConfig.cpp|general.config.sandbox_enabled"
+  "dom/chrome-webidl/JSActor.webidl|safeForUntrustedWebProcess"
 )
 
 failed=0

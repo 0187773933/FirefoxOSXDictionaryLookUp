@@ -43,6 +43,11 @@ export const DictionaryLookup = {
       },
       allFrames: true,
       messageManagerGroups: ["browsers"],
+      // Web pages run in "untrusted" content processes; since November 2026
+      // Nightly refuses actors there unless they opt in. This one is safe:
+      // the parent half does nothing, and the child only runs a native lookup
+      // when the parent asks.
+      safeForUntrustedWebProcess: true,
     });
 
     Services.obs.addObserver(this, "browser-delayed-startup-finished");

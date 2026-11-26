@@ -93,7 +93,8 @@ python3 tests/smoke_test.py
 The test starts the built Nightly with a throwaway profile, so your own
 profile is never touched, and the test browser quits when it's done. It checks
 that a selected word shows **Look Up “serendipity”** as the first item with
-its separator, and that clicking it raises no errors. It also checks that the
+its separator, that the page's process actually receives and runs the lookup,
+and that clicking it raises no errors. It also checks that the
 item stays hidden on blank space and in a password field. The Dictionary
 popover is drawn by macOS, so the test can't see it; confirm that by eye.
 
