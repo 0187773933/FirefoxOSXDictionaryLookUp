@@ -1,4 +1,18 @@
 #!/bin/bash
+# WebGL fix -- run after every build.
+#
+# The downloaded artifact XUL is built by Mozilla with official *nightly*
+# branding (MOZ_APP_DISPLAYNAME="Firefox Nightly"), so it spawns its child
+# processes from paths like:
+#     gpu-helper.app/Contents/MacOS/Firefox Nightly GPU Helper
+# But this tree builds with *unofficial* branding (MOZ_APP_DISPLAYNAME=Nightly),
+# which stages them as:
+#     gpu-helper.app/Contents/MacOS/Nightly GPU Helper
+#
+# The mismatch makes posix_spawnp fail with ENOENT (0x2). The GPU process never
+# launches, WebRender falls back to software, and WebGL is disabled -- which no
+# amount of about:config toggling can override. Hardlinking the officially-named
+# executables fixes it. Idempotent; safe to re-run.
 set -euo pipefail
 SRC="${1:?Usage: fix-macos-helpers.sh /path/to/firefox-source}"
 

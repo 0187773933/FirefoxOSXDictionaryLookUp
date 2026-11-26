@@ -1,8 +1,8 @@
 diff --git a/browser/actors/ContextMenuChild.sys.mjs b/browser/actors/ContextMenuChild.sys.mjs
-index bdb925257894a..70047ee05b67a 100644
+index 21eabd496bc3c..6a93fd60944d0 100644
 --- a/browser/actors/ContextMenuChild.sys.mjs
 +++ b/browser/actors/ContextMenuChild.sys.mjs
-@@ -46,6 +46,26 @@ export class ContextMenuChild extends JSWindowActorChild {
+@@ -47,6 +47,26 @@ export class ContextMenuChild extends JSWindowActorChild {
  
    receiveMessage(message) {
      switch (message.name) {
@@ -30,7 +30,7 @@ index bdb925257894a..70047ee05b67a 100644
          let target = lazy.ContentDOMReference.resolve(
            message.data.targetIdentifier
 diff --git a/browser/base/content/browser-context.inc.xhtml b/browser/base/content/browser-context.inc.xhtml
-index 621be24e4e0c1..5f3f9286e38bf 100644
+index 577a5125deac8..896aa2c708a98 100644
 --- a/browser/base/content/browser-context.inc.xhtml
 +++ b/browser/base/content/browser-context.inc.xhtml
 @@ -5,6 +5,8 @@
@@ -43,7 +43,7 @@ index 621be24e4e0c1..5f3f9286e38bf 100644
                  data-l10n-id="main-context-menu-back-mac"
                  command="Browser:BackOrBackDuplicate"/>
 diff --git a/browser/base/content/browser-context.js b/browser/base/content/browser-context.js
-index 042341cecb1a4..9c81d5ad7f13a 100644
+index 2699de8aa4eb3..ea6a07fd60b09 100644
 --- a/browser/base/content/browser-context.js
 +++ b/browser/base/content/browser-context.js
 @@ -13,6 +13,9 @@ document.addEventListener(
@@ -57,10 +57,10 @@ index 042341cecb1a4..9c81d5ad7f13a 100644
            gViewSourceUtils
              .getPageActor(gContextMenu.browser)
 diff --git a/browser/base/content/nsContextMenu.sys.mjs b/browser/base/content/nsContextMenu.sys.mjs
-index 4f48face7c2ce..f642206783cc3 100644
+index 430dbd3bfc81e..c6cae3a6004df 100644
 --- a/browser/base/content/nsContextMenu.sys.mjs
 +++ b/browser/base/content/nsContextMenu.sys.mjs
-@@ -382,6 +382,7 @@ export class nsContextMenu {
+@@ -398,6 +398,7 @@ export class nsContextMenu {
    }
  
    initItems(aXulMenu) {
@@ -68,8 +68,8 @@ index 4f48face7c2ce..f642206783cc3 100644
      this.initOpenItems();
      this.initNavigationItems();
      this.initViewItems();
-@@ -411,6 +412,31 @@ export class nsContextMenu {
-     }
+@@ -437,6 +438,31 @@ export class nsContextMenu {
+     return this.onLink && this.isContentSelected;
    }
  
 +  initDictionaryItem() {
@@ -99,74 +99,26 @@ index 4f48face7c2ce..f642206783cc3 100644
 +
    initTextFragmentItems() {
      const shouldShow =
-       lazy.TEXT_FRAGMENTS_ENABLED &&
-diff --git a/browser/base/content/test/contextMenu/browser.toml b/browser/base/content/test/contextMenu/browser.toml
-index d969097dfab5a..49140b51f8ea9 100644
---- a/browser/base/content/test/contextMenu/browser.toml
-+++ b/browser/base/content/test/contextMenu/browser.toml
-@@ -91,6 +91,9 @@ skip-if = [
-   "os == 'linux' && os_version == '24.04' && arch == 'x86_64' && display == 'x11' && socketprocess_networking",
- ]
+       !(
+diff --git a/browser/base/content/test/browser-contextMenu/browser.toml b/browser/base/content/test/browser-contextMenu/browser.toml
+index a8cc579b46d65..7e87254344647 100644
+--- a/browser/base/content/test/browser-contextMenu/browser.toml
++++ b/browser/base/content/test/browser-contextMenu/browser.toml
+@@ -65,6 +65,9 @@ skip-if = [
+ ["browser_contextmenu_loadblobinnewtab.js"]
+ support-files = ["browser_contextmenu_loadblobinnewtab.html"]
  
 +["browser_contextmenu_lookup_dictionary.js"]
 +run-if = ["os == 'mac'"]
 +
  ["browser_contextmenu_plaintextlinks.js"]
- skip-if = [
-   "a11y_checks", # Bugs 1858041 and 1835079 for causing intermittent crashes
-diff --git a/browser/base/content/test/contextMenu/contextmenu_common.js b/browser/base/content/test/contextMenu/contextmenu_common.js
-index 165f0750f6f40..6f8c2a8f541d4 100644
---- a/browser/base/content/test/contextMenu/contextmenu_common.js
-+++ b/browser/base/content/test/contextMenu/contextmenu_common.js
-@@ -75,6 +75,7 @@ function getVisibleMenuItems(aMenu) {
-         // Inspect accessibility properties does not have an access key. See
-         // bug 1630717 for more details.
-         item.id != "context-inspect-a11y" &&
-+        item.id != "context-look-up-dictionary" &&
-         !item.id.includes("context-media-playbackrate") &&
-         item.id != "context-copy-link-to-highlight" &&
-         item.id != "context-copy-clean-link-to-highlight"
-@@ -432,6 +433,19 @@ async function test_contextmenu(selector, menuItems, options = {}) {
-   }
  
-   if (menuItems) {
-+    if (
-+      AppConstants.platform == "macosx" &&
-+      gContextMenu.isTextSelected &&
-+      !gContextMenu.onPassword
-+    ) {
-+      menuItems = [
-+        "context-look-up-dictionary",
-+        true,
-+        "---",
-+        null,
-+        ...menuItems,
-+      ];
-+    }
-     if (Services.prefs.getBoolPref("devtools.inspector.enabled", true)) {
-       let inspectItems = [];
-       let hasSeparatorAboveAskChat = false;
-diff --git a/browser/locales/en-US/browser/browserContext.ftl b/browser/locales/en-US/browser/browserContext.ftl
-index 85b875194acf5..060407eb23781 100644
---- a/browser/locales/en-US/browser/browserContext.ftl
-+++ b/browser/locales/en-US/browser/browserContext.ftl
-@@ -8,6 +8,11 @@ navbar-tooltip-instruction =
-        *[other] Right-click or pull down to show history
-     }
- 
-+# Variables:
-+#   $text (String) - The selected text, truncated for the menu label.
-+main-context-menu-look-up-dictionary =
-+    .label = Look Up “{ $text }”
-+
- ## Back
- 
- # Variables
-diff --git a/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js b/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
+ ["browser_contextmenu_save_blocked.js"]
+diff --git a/browser/base/content/test/browser-contextMenu/browser_contextmenu_lookup_dictionary.js b/browser/base/content/test/browser-contextMenu/browser_contextmenu_lookup_dictionary.js
 new file mode 100644
 index 0000000000000..5f1f45fe5fae6
 --- /dev/null
-+++ b/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
++++ b/browser/base/content/test/browser-contextMenu/browser_contextmenu_lookup_dictionary.js
 @@ -0,0 +1,95 @@
 +/* Any copyright is dedicated to the Public Domain.
 + * https://creativecommons.org/publicdomain/zero/1.0/ */
@@ -263,3 +215,51 @@ index 0000000000000..5f1f45fe5fae6
 +    }
 +  });
 +});
+diff --git a/browser/base/content/test/browser-contextMenu/contextmenu_common.js b/browser/base/content/test/browser-contextMenu/contextmenu_common.js
+index 49c6f75f90ede..f2fe8ffe9d1c1 100644
+--- a/browser/base/content/test/browser-contextMenu/contextmenu_common.js
++++ b/browser/base/content/test/browser-contextMenu/contextmenu_common.js
+@@ -79,6 +79,7 @@ function getVisibleMenuItems(aMenu) {
+         // Inspect accessibility properties does not have an access key. See
+         // bug 1630717 for more details.
+         item.id != "context-inspect-a11y" &&
++        item.id != "context-look-up-dictionary" &&
+         !item.id.includes("context-media-playbackrate") &&
+         item.id != "context-copy-link-to-highlight" &&
+         item.id != "context-copy-clean-link-to-highlight"
+@@ -438,6 +439,19 @@ async function test_contextmenu(selector, menuItems, options = {}) {
+   }
+ 
+   if (menuItems) {
++    if (
++      AppConstants.platform == "macosx" &&
++      gContextMenu.isTextSelected &&
++      !gContextMenu.onPassword
++    ) {
++      menuItems = [
++        "context-look-up-dictionary",
++        true,
++        "---",
++        null,
++        ...menuItems,
++      ];
++    }
+     if (Services.prefs.getBoolPref("devtools.inspector.enabled", true)) {
+       let inspectItems = [];
+       let hasSeparatorAboveAskChat = false;
+diff --git a/browser/locales/en-US/browser/browserContext.ftl b/browser/locales/en-US/browser/browserContext.ftl
+index b39bd32aeeaf6..b7c2661b24249 100644
+--- a/browser/locales/en-US/browser/browserContext.ftl
++++ b/browser/locales/en-US/browser/browserContext.ftl
+@@ -8,6 +8,11 @@ navbar-tooltip-instruction =
+        *[other] Right-click or pull down to show history
+     }
+ 
++# Variables:
++#   $text (String) - The selected text, truncated for the menu label.
++main-context-menu-look-up-dictionary =
++    .label = Look Up “{ $text }”
++
+ ## Back
+ 
+ # Variables

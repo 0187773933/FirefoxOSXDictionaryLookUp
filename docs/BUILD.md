@@ -2,9 +2,9 @@
 
 ## What was needed
 
-This feature uses native lookup code that was already present in Firefox's compiled macOS engine. The patch connects the context menu to `cmd_lookUpDictionary`, supplying the click coordinates in the correct frame. It changes JavaScript, XUL markup, Fluent strings, and tests. No C++, Rust, add-on, privileged-extension preferences, private signing certificate, or custom engine compilation was needed for the dictionary change.
+This feature uses native lookup code that was already present in Firefox's compiled macOS engine. The module in `src/` connects the context menu to `cmd_lookUpDictionary`, supplying the click coordinates in the correct frame. Since November 2026 it does not change any Firefox source. `install.sh` copies it into the built app, and Firefox's autoconfig loads it at startup. The build itself is a plain, unmodified mozilla-central artifact build.
 
-The source was built at revision `1cf7c37cb9982` from September 12, 2026. The full revision and local application path are recorded in `config/build-info.json`.
+The earlier patch-based version was built at revision `1cf7c37cb9982` (September 12, 2026). Its records are in `legacy/`.
 
 ## Configuration
 
@@ -19,7 +19,7 @@ Artifact mode downloads precompiled native components and combines them with the
 
 ## Using a fresh compatible checkout
 
-Obtain a Mozilla Firefox Git checkout containing the required revision. Use the recorded base revision to reproduce this patch; later revisions must pass the patch compatibility check. The automatic updater specifically expects `origin/bookmarks/central`, so a checkout from a different mirror needs its updater target adjusted.
+Obtain a Mozilla Firefox Git checkout. Any recent revision works; `check-compat.sh` reports whether it still has the internals Look Up uses. The automatic updater specifically expects `origin/bookmarks/central`, so a checkout from a different mirror needs its updater target adjusted.
 
 From the source directory, run Mozilla's bootstrap for artifact builds:
 
@@ -37,23 +37,26 @@ That refreshed build/test tools. It is recorded for completeness; it was not an 
 
 For a fresh dedicated checkout, copy `config/mozconfig` to `mozconfig`. Preserve and review any existing build configuration instead of overwriting it. If `MOZCONFIG` selects a different file, ensure that file enables artifact builds.
 
-Then run the package's build script:
+Then build and install from the source directory:
 
 ```bash
-~/FirefoxOSXDictionaryLookUp/scripts/build-patched-nightly.sh /path/to/firefox-source
+./mach build
+~/WORKSPACE/PROJECTS/FirefoxOSXDictionaryLookUp/scripts/fix-macos-helpers.sh "$PWD"
+FIREFOX_SRC="$PWD" ~/WORKSPACE/PROJECTS/FirefoxOSXDictionaryLookUp/install.sh
 ```
 
-The script applies the patch if needed, invokes `./mach build`, then repairs the macOS helper executable names. Open the built application under `obj-*/dist/Nightly.app` and restart it after rebuilding. On another machine the `obj-*` directory name may differ.
+`scripts/firefoxNightlyUpdate` does the same after fetching and resetting to the latest Nightly. Open the built application under `obj-*/dist/Nightly.app` and restart it after rebuilding. On another machine the `obj-*` directory name may differ.
 
 The full Firefox source and downloaded artifacts are external dependencies. This package is not an offline Firefox build distribution.
 
 ## Fast frontend rebuilds
 
-After the checkout has a successful build and only frontend files have changed, the command used for this implementation was:
+Changing Look Up itself needs no rebuild: edit `src/`, run `install.sh`, and restart Nightly with `-purgecaches`. After the checkout has a successful build and only Firefox frontend files have changed, use:
 
 ```bash
 ./mach build faster
-~/FirefoxOSXDictionaryLookUp/scripts/fix-macos-helpers.sh "$PWD"
+~/WORKSPACE/PROJECTS/FirefoxOSXDictionaryLookUp/scripts/fix-macos-helpers.sh "$PWD"
+FIREFOX_SRC="$PWD" ~/WORKSPACE/PROJECTS/FirefoxOSXDictionaryLookUp/install.sh
 ```
 
 Use the normal `./mach build` after pulling a new revision or changing the native/build configuration so the artifacts and generated output match the checkout. The packaged updater does this automatically.
@@ -72,13 +75,6 @@ After launch, check `about:support` → Graphics for a GPU process and hardware 
 
 ## Tests and limitations
 
-The patch includes a browser test covering selected text, 150% page zoom, a text field, an iframe, no selection, and password exclusion. From the patched source directory:
+`tests/smoke_test.py` checks the autoconfig module against the built app over Marionette: a selected word, a click on the item, blank space, and a password field. It passed against revision `050fc3708219` on November 26, 2026. There is no in-tree browser test, because the module lives outside the Firefox source. The patch-based version had one, covering selected text, 150% page zoom, a text field, an iframe, no selection and password exclusion. It is kept at `legacy/source/browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js`, with its results in `legacy/logs/`. The child actor's lookup code is unchanged from that tested version. The menu wiring is new.
 
-```bash
-./mach mochitest --headless browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
-./mach mochitest browser/base/content/test/contextMenu/browser_contextmenu_lookup_dictionary.js
-```
-
-Both modes passed during implementation. The full context-menu test encountered an image-link timeout; the complete suite is not verified. A full lint invocation also found that the installed Rust was too old for cargo-audit; the relevant JavaScript and Fluent checks passed, and no Rust files changed. Detailed records are in `logs/`.
-
-The main source patch remains local and can conflict with future upstream changes. Both packaged and installed updaters stop on such a conflict before resetting the current source. Update the persistent patch used by the installed updater when revising the customization.
+Upstream can still rename an internal the module reads. `check-compat.sh`, which the updater runs before every build, names the one that changed. The menu item then stays hidden instead of failing, and the update and build carry on regardless.

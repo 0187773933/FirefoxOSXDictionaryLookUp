@@ -1,0 +1,126 @@
+#!/bin/bash
+set -euo pipefail
+
+SRC="/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified"
+LOOKUP_PATCH="/Users/morpheous/.local/share/firefox-nightly/patches/native-lookup.patch"
+
+if [ ! -s "$LOOKUP_PATCH" ]; then
+    echo "ERROR: Native Look Up patch is missing: $LOOKUP_PATCH" >&2
+    exit 1
+fi
+check_only=false
+case "${1:-}" in
+    "") ;;
+    --check-only) check_only=true ;;
+    *) echo "Usage: firefoxNightlyUpdate [--check-only]" >&2; exit 2 ;;
+esac
+cd "$SRC" || exit 1
+
+git fetch origin
+upstream_revision=$(git rev-parse --verify 'origin/bookmarks/central^{commit}')
+patch_index_dir=$(mktemp -d "${TMPDIR:-/tmp}/firefox-nightly-patch.XXXXXX")
+trap 'rm -rf "$patch_index_dir"' EXIT
+patch_index="$patch_index_dir/index"
+
+prepared_patch="$patch_index_dir/native-lookup.patch"
+python3 - "$LOOKUP_PATCH" "$upstream_revision" "$prepared_patch" <<'PYTHON'
+import pathlib
+import re
+import subprocess
+import sys
+
+patch_path, revision, output_path = sys.argv[1:]
+patch = pathlib.Path(patch_path).read_text()
+match = re.search(r"^\+\+\+ b/(.+)/contextmenu_common\.js$", patch, re.MULTILINE)
+if match:
+    paths = subprocess.check_output(
+        ["git", "ls-tree", "-r", "--name-only", revision,
+         "--", "browser/base/content/test"], text=True
+    ).splitlines()
+    candidates = [str(pathlib.PurePosixPath(path).parent) for path in paths
+                  if path.endswith("/contextmenu_common.js")
+                  and str(pathlib.PurePosixPath(path).parent / "browser.toml") in paths]
+    if len(candidates) != 1:
+        sys.exit("ERROR: Cannot uniquely locate the upstream context-menu tests.")
+    if match[1] != candidates[0]:
+        print(f"==> Adapting Look Up test paths to {candidates[0]}")
+        patch = patch.replace(match[1] + "/", candidates[0] + "/")
+pathlib.Path(output_path).write_text(patch)
+PYTHON
+
+# Keep validation and rebasing in a temporary index, before touching the checkout.
+GIT_INDEX_FILE="$patch_index" git read-tree "$upstream_revision"
+if GIT_INDEX_FILE="$patch_index" git apply --cached --check "$prepared_patch"; then
+    GIT_INDEX_FILE="$patch_index" git apply --cached "$prepared_patch"
+else
+    echo "==> Rebasing native Look Up onto the new Nightly revision"
+    if ! GIT_INDEX_FILE="$patch_index" git apply --cached --3way "$prepared_patch"; then
+        echo "ERROR: The Look Up patch conflicts with this Nightly revision." >&2
+        echo "Stopped before resetting your source or rebuilding Nightly." >&2
+        exit 1
+    fi
+fi
+GIT_INDEX_FILE="$patch_index" git diff --cached --binary "$upstream_revision" > "$prepared_patch"
+if [ "$check_only" = true ]; then
+    echo "==> Native macOS Look Up patch is compatible with $upstream_revision"
+    exit 0
+fi
+
+cp "$prepared_patch" "$LOOKUP_PATCH"
+
+git reset --hard "$upstream_revision"
+echo "==> Restoring native macOS Look Up"
+# Restore only patch files, including new files left by earlier updates.
+GIT_INDEX_FILE="$patch_index" git diff --cached --name-only -z "$upstream_revision" |
+    GIT_INDEX_FILE="$patch_index" git checkout-index --force -z --stdin
+git apply --reverse --check "$LOOKUP_PATCH"
+
+# NOTE: the old line here was
+#   touch "$SRC/obj-x86_64-apple-darwin22.5.0/CLOBBER"
+# That objdir does not exist (the real ones are darwin24.5.0 / darwin24.6.0 --
+# the name tracks the macOS kernel version), so the touch always failed and no
+# clobber ever happened. Uncomment below if you actually want a forced clobber:
+# for o in "$SRC"/obj-*/; do touch "$o/CLOBBER"; done
+
+./mach build
+
+# ---------------------------------------------------------------------------
+# WebGL fix -- must run after every build.
+#
+# The downloaded artifact XUL is built by Mozilla with official *nightly*
+# branding (MOZ_APP_DISPLAYNAME="Firefox Nightly"), so it spawns its child
+# processes from paths like:
+#     gpu-helper.app/Contents/MacOS/Firefox Nightly GPU Helper
+# But this tree builds with *unofficial* branding (MOZ_APP_DISPLAYNAME=Nightly),
+# which stages them as:
+#     gpu-helper.app/Contents/MacOS/Nightly GPU Helper
+#
+# The mismatch makes posix_spawnp fail with ENOENT (0x2). The GPU process never
+# launches, WebRender falls back to software, and WebGL is disabled -- which no
+# amount of about:config toggling can override. Hardlinking the officially-named
+# executables fixes it. Idempotent; safe to re-run.
+# ---------------------------------------------------------------------------
+echo "==> Patching branded helper executable names (WebGL/GPU process fix)"
+for app in "$SRC"/obj-*/dist/*.app; do
+    macos="$app/Contents/MacOS"
+    [ -d "$macos" ] || continue
+    for pair in "gpu-helper.app:GPU Helper" \
+                "media-plugin-helper.app:Media Plugin Helper" \
+                "security-module-helper.app:Security Module Helper"; do
+        bundle="${pair%%:*}"
+        suffix="${pair#*:}"
+        src="$macos/$bundle/Contents/MacOS/Nightly $suffix"
+        dst="$macos/$bundle/Contents/MacOS/Firefox Nightly $suffix"
+        [ -e "$src" ] || continue
+        [ -e "$dst" ] && continue
+        if ln "$src" "$dst" 2>/dev/null || cp -p "$src" "$dst"; then
+            echo "    + $(basename "$app")/$bundle -> Firefox Nightly $suffix"
+        else
+            echo "    ! FAILED to create: $dst" >&2
+            exit 1
+        fi
+    done
+done
+echo "==> Done. Verify at about:support -> Graphics (GPU Process should be present,"
+echo "    'Compositing' should read WebRender, not WebRender (Software))."
+echo "    Native macOS Look Up patch applied. Restart Nightly to load the update."

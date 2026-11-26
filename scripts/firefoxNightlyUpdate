@@ -1,37 +1,35 @@
 #!/bin/bash
+# Update the local Nightly build to the latest mozilla-central, rebuild it, and
+# install native macOS Look Up on top (from FirefoxOSXDictionaryLookUp).
+#
+# Look Up is no longer a source patch: it is installed into the built .app as
+# a startup script, so upstream changes cannot make the update or build fail.
 set -euo pipefail
 
-PACKAGE_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
+# Resolve symlinks so /usr/local/bin/firefoxNightlyUpdate finds this package.
+LOOKUP=$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd)
 SRC="${FIREFOX_SRC:-/Users/morpheous/APPLICATIONS_2/Firefox/mozilla-unified}"
-LOOKUP_PATCH="$PACKAGE_DIR/patches/native-lookup.patch"
 
-if [ ! -s "$LOOKUP_PATCH" ]; then
-    echo "ERROR: Native Look Up patch is missing: $LOOKUP_PATCH" >&2
-    exit 1
-fi
+check_only=false
+case "${1:-}" in
+    "") ;;
+    --check-only) check_only=true ;;
+    *) echo "Usage: firefoxNightlyUpdate [--check-only]" >&2; exit 2 ;;
+esac
 cd "$SRC" || exit 1
 
 git fetch origin
 upstream_revision=$(git rev-parse --verify 'origin/bookmarks/central^{commit}')
-patch_index_dir=$(mktemp -d "${TMPDIR:-/tmp}/firefox-nightly-patch.XXXXXX")
-trap 'rm -rf "$patch_index_dir"' EXIT
-patch_index="$patch_index_dir/index"
 
-# Validate the patch against the new source before resetting this checkout.
-GIT_INDEX_FILE="$patch_index" git read-tree "$upstream_revision"
-if ! GIT_INDEX_FILE="$patch_index" git apply --cached --check "$LOOKUP_PATCH"; then
-    echo "ERROR: The Look Up patch needs updating for this Nightly revision." >&2
-    echo "Stopped before resetting your source or rebuilding Nightly." >&2
-    exit 1
+# Warn only: a missing internal can hide the Look Up item but never breaks Nightly.
+FIREFOX_SRC="$SRC" "$LOOKUP/check-compat.sh" "$upstream_revision" || true
+if [ "$check_only" = true ]; then
+    exit 0
 fi
-GIT_INDEX_FILE="$patch_index" git apply --cached "$LOOKUP_PATCH"
 
 git reset --hard "$upstream_revision"
-echo "==> Restoring native macOS Look Up"
-# Restore only patch files, including new files left by earlier updates.
-GIT_INDEX_FILE="$patch_index" git diff --cached --name-only -z "$upstream_revision" |
-    GIT_INDEX_FILE="$patch_index" git checkout-index --force -z --stdin
-git apply --reverse --check "$LOOKUP_PATCH"
+# Left behind by the old patch-based Look Up (untracked, so reset keeps it).
+rm -f browser/base/content/test/browser-contextMenu/browser_contextmenu_lookup_dictionary.js
 
 # NOTE: the old line here was
 #   touch "$SRC/obj-x86_64-apple-darwin22.5.0/CLOBBER"
@@ -42,43 +40,11 @@ git apply --reverse --check "$LOOKUP_PATCH"
 
 ./mach build
 
-# ---------------------------------------------------------------------------
-# WebGL fix -- must run after every build.
-#
-# The downloaded artifact XUL is built by Mozilla with official *nightly*
-# branding (MOZ_APP_DISPLAYNAME="Firefox Nightly"), so it spawns its child
-# processes from paths like:
-#     gpu-helper.app/Contents/MacOS/Firefox Nightly GPU Helper
-# But this tree builds with *unofficial* branding (MOZ_APP_DISPLAYNAME=Nightly),
-# which stages them as:
-#     gpu-helper.app/Contents/MacOS/Nightly GPU Helper
-#
-# The mismatch makes posix_spawnp fail with ENOENT (0x2). The GPU process never
-# launches, WebRender falls back to software, and WebGL is disabled -- which no
-# amount of about:config toggling can override. Hardlinking the officially-named
-# executables fixes it. Idempotent; safe to re-run.
-# ---------------------------------------------------------------------------
-echo "==> Patching branded helper executable names (WebGL/GPU process fix)"
-for app in "$SRC"/obj-*/dist/*.app; do
-    macos="$app/Contents/MacOS"
-    [ -d "$macos" ] || continue
-    for pair in "gpu-helper.app:GPU Helper" \
-                "media-plugin-helper.app:Media Plugin Helper" \
-                "security-module-helper.app:Security Module Helper"; do
-        bundle="${pair%%:*}"
-        suffix="${pair#*:}"
-        src="$macos/$bundle/Contents/MacOS/Nightly $suffix"
-        dst="$macos/$bundle/Contents/MacOS/Firefox Nightly $suffix"
-        [ -e "$src" ] || continue
-        [ -e "$dst" ] && continue
-        if ln "$src" "$dst" 2>/dev/null || cp -p "$src" "$dst"; then
-            echo "    + $(basename "$app")/$bundle -> Firefox Nightly $suffix"
-        else
-            echo "    ! FAILED to create: $dst" >&2
-            exit 1
-        fi
-    done
-done
+# WebGL fix -- must run after every build. See scripts/fix-macos-helpers.sh.
+"$LOOKUP/scripts/fix-macos-helpers.sh" "$SRC"
+
+FIREFOX_SRC="$SRC" "$LOOKUP/install.sh"
+
 echo "==> Done. Verify at about:support -> Graphics (GPU Process should be present,"
 echo "    'Compositing' should read WebRender, not WebRender (Software))."
-echo "    Native macOS Look Up patch applied. Restart Nightly to load the update."
+echo "    Restart Nightly to load the update."
